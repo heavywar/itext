@@ -18,7 +18,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 
-class Test {
+class TestItest {
     ArrayList<String>  WordList = new ArrayList<>();
     String MainWord = "При жизни Серова картина экспонировалась на Таврической выставке (1905), организованной Сергеем Дягилевым, на Русской художественной выставке в Париже (1906). Кроме того, портрет демонстрировался на коллективных выставках Союза русских художников. В 1920 году картина перешла в собственность Малого театра. С 1935 года находится в Государственной Третьяковской галерее (инв. номер 28079). Там же хранится единственный известный искусствоведам эскиз к портрету, выполненный Серовым и показывающий, что ещё до начала непосредственной работы художник определил композицию, выбрал ракурс, придающий образу монументальность, и решил сделать акцент на силуэте актрисы.";
     public static final String DEST = "./fonts/tutorial/f05_russian_encoding.pdf";
@@ -26,7 +26,7 @@ class Test {
     public static void main(String[] args) throws Exception {
         File file = new File(DEST);
         file.getParentFile().mkdirs();
-        new Test().manipulatePdf(DEST);
+        new TestItest().manipulatePdf(DEST);
     }
 
     protected void manipulatePdf(String dest) throws Exception {
@@ -50,8 +50,7 @@ class Test {
         Paragraph p = new Paragraph();
         String sa = "Приветит2f";
         String sub = "";
-        //int a = sa.indexOf('f');
-       // System.out.println(a);
+
         int j = 1;
         int m = 0;
         float b = (float) 0.3;
@@ -62,10 +61,8 @@ class Test {
 
 
               sub = sa.substring(afValue+m,afValue+j);
-              System.out.println(sub);
               if (sa.charAt(i) == 'в') {
-                 // t.setText(String.valueOf(sa.charAt(i)));
-                  System.out.println(String.valueOf(sa.charAt(i)));
+                  t.setText(String.valueOf(sa.charAt(i)));
 
                   //t2.setTextRise((float) 1.2);
 
@@ -77,7 +74,6 @@ class Test {
 
 
               } else if (sa.charAt(i) == sub.charAt(0)) {
-                 // System.out.println("SUB " + String.valueOf(sa.charAt(i)));
                   t.setText(String.valueOf(sa.charAt(i)));
                   //t2.setTextRise((float) 1.2);
                   //t2.setSkew(0,10);
@@ -91,7 +87,6 @@ class Test {
 
           }
 
-          //  System.out.println("В конце " + a);
             t.setText(String.valueOf(sa.charAt(i)));
 
             p.add(t);
@@ -147,61 +142,80 @@ class Test {
 
         private Paragraph returnRise() {
             Word w = new Word();
-           // String sub = "";
-            //int a = sa.indexOf('f');
-            // System.out.println(a);
-            String sub = "";
-            //float b = (float) 0.3;
+            Color greenColor = new DeviceCmyk(0.78f, 0, 0.81f, 0.21f);
+            Color yellowColor = new DeviceCmyk(0, 0, 0.76f, 0.01f);
+            Color redColor = new DeviceCmyk(0, 0.76f, 0.86f, 0.01f);
+            Color blueColor = new DeviceCmyk(0.28f, 0.11f, 0, 0);
+            String sub;//String Для substring
             ArrayList<String> stringArrayList = new ArrayList<>();
             stringArrayList = w.RandomLetter_WithoutSpace(MainWord);
             Paragraph p = new Paragraph();
-            int randomif =0;
+            int randomif =0;// Увеличивается for для каждого слова ,чтобы выбрать слово которое при использованииr remainder  возвращает 0
+            int remainder = 4;//остаток,делиться на ranmomif
 
-            for (int i = 0; i <stringArrayList.size(); i++)
-            {
+            for (int i = 0; i <stringArrayList.size(); i++) {
+                 if(randomif %remainder ==0){//Если слово под номером randomif делиться на  remainder то заходим внутрь ,if нужен для того чтобы определить на сколько слов будет применяться setRise
+                float countSetRise = (float) 0.6; //Устанавливает setRise и увиеличивается каждый раз
+                int firssub = 0;// substring(+ firssub, + secondsub
+                int secondsub = 1; //
 
-                float countSetRise = (float) 0.3;
-                int secondsub = 1;
-                int firssub = 0;
 
-               // System.out.println(stringArrayList.get(i));
-                char c = w.RandomLetter(stringArrayList.get(i));
+
+                char c = w.RandomLetter(stringArrayList.get(i));//Ранлом буква с которой будет начинаться setRise
                 char s = w.RandomLetter(stringArrayList.get(i));
-              //  System.out.println("!!!!!!!!" + c + " " +s );
-                int afValue = stringArrayList.get(i).indexOf(c);for(int j = 0; j<stringArrayList.get(i).length();j++) {
-                Text t2 = new Text("");
-                sub = stringArrayList.get(i).substring(afValue + firssub, afValue + secondsub);
+                int afValue = stringArrayList.get(i).indexOf(c);
+                for (int j = 0; j < stringArrayList.get(i).length(); j++) {
+                    Text t2 = new Text("");
+                    sub = stringArrayList.get(i).substring(afValue + firssub, afValue + secondsub);//Буквы которые должны увеличиваться(serRise)
 
-                if (stringArrayList.get(i).charAt(j) == c) {
+                    if (stringArrayList.get(i).charAt(j) == c && Character.isAlphabetic(stringArrayList.get(i).charAt(j))) {
+                        t2.setText(String.valueOf(stringArrayList.get(i).charAt(j)));
+
+                        t2.setRelativePosition(0, 0, 0, 0 + countSetRise);
+                       t2.setBold();
+                        secondsub++;
+                        firssub++;
+                        countSetRise += 0.3;
+                    }// закрытие if(sub)
+                     else if (stringArrayList.get(i).charAt(j) == sub.charAt(0)  && Character.isAlphabetic(stringArrayList.get(i).charAt(j))) {
+                        t2.setText(String.valueOf(stringArrayList.get(i).charAt(j)));
+                        t2.setBold();
+
+                        //t2.setSkew(0,10);
+                        t2.setRelativePosition(0, 0, 0, 0 + countSetRise);
+                        secondsub++;
+                        firssub++;
+                        countSetRise += 0.3;
+                    }//Закрытие else
+
                     t2.setText(String.valueOf(stringArrayList.get(i).charAt(j)));
+                    p.add(t2);
+
+                }//Закрытие фор по буквам.
 
 
-                    t2.setRelativePosition(0, 0, 0, 1 + countSetRise);
 
-                    secondsub++;
-                    firssub++;
-                    countSetRise += 0.3;
-                } else if (stringArrayList.get(i).charAt(j) == sub.charAt(0)) {
-                    t2.setText(String.valueOf(stringArrayList.get(i).charAt(j)));
+            }//Закрытие рандом иф
+                if(randomif %remainder !=0) {// Чтобы добавить все остальные слова
+                    Text t2 = new Text("");
+                    if (randomif % (remainder+2) == 0) {
+                        t2.setText(stringArrayList.get(i));
+                        t2.setBackgroundColor(greenColor);
+                        t2.setTextRise(5);
 
+                    }
+                    if (randomif % (remainder+2) != 0) {
+                        t2.setText(stringArrayList.get(i));
+                        t2.setBackgroundColor(redColor);
+                    }
 
-                    //t2.setSkew(0,10);
-                    t2.setRelativePosition(0, 0, 0, 1 + countSetRise);
-                    secondsub++;
-                    firssub++;
-                    countSetRise += 0.3;
+                    p.add(t2);
                 }
-                randomif++;
-                t2.setText(String.valueOf(stringArrayList.get(i).charAt(j)));
-                p.add(t2);
-
-            }
 
                 p.add(" ");
+                randomif++;
 
-
-
-            }
+            }//Закрытие фор
              return p;
         }
 }//text.setHyphenation(new HyphenationConfig("ru", "none", 2, 2));

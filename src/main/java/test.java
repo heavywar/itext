@@ -22,31 +22,17 @@ public class test {
 //        char c = chars.charAt(rnd.nextInt(chars.length()));
 //        System.out.println(c);
 //        StringBuilder stringBuilder;
-        String ar = "Привет";
-
-        int afValue = ar.indexOf('в');
-        int result = ar.length() - afValue;
-        System.out.println(afValue);
-        String sub = "";
-        //System.out.println(sub);
-//        char[] a = new  char[result];
-        //System.out.println(a);
-
-        for(int i = 0;i<=result;i++)
-        {
-             sub = ar.substring(afValue,afValue+i);
-            System.out.println(sub);
 
 
 
-
-        }
-
-//         System.out.println(a[0]);
-//        System.out.println(a[1]);
-//        System.out.println(a[2]);
-
-
+String s  = "aa2abb23";
+for(int i = 0; i<s.length();i++)
+{
+    if (Character.isAlphabetic(s.charAt(i)))
+        System.out.println( s.charAt(i)+" +");
+    else
+        System.out.println(s.charAt(i)+" -");
+}
 
     }
 
