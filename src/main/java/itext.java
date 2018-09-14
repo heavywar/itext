@@ -23,7 +23,6 @@ class Test {
     String MainWord = "При жизни Серова картина экспонировалась на Таврической выставке (1905), организованной Сергеем Дягилевым, на Русской художественной выставке в Париже (1906). Кроме того, портрет демонстрировался на коллективных выставках Союза русских художников. В 1920 году картина перешла в собственность Малого театра. С 1935 года находится в Государственной Третьяковской галерее (инв. номер 28079). Там же хранится единственный известный искусствоведам эскиз к портрету, выполненный Серовым и показывающий, что ещё до начала непосредственной работы художник определил композицию, выбрал ракурс, придающий образу монументальность, и решил сделать акцент на силуэте актрисы.";
     public static final String DEST = "./fonts/tutorial/f05_russian_encoding.pdf";
     public static final String FONT = "D:\\birch111.ttf";
-public static int j;
     public static void main(String[] args) throws Exception {
         File file = new File(DEST);
         file.getParentFile().mkdirs();
@@ -48,20 +47,58 @@ public static int j;
         Document doc = new Document(pdfDoc);
 
 
-//        Paragraph p = new Paragraph();
-//        String sa = "ПриветИт2";
-//
-//        for (int i = 0; i < sa.length(); i++) {
-//            Text t = new Text("");
-//            if (sa.charAt(i) == 'и') {
-//                t.setText(String.valueOf(sa.charAt(i)));
-//                t.setTextRise(4);
-//            }
-//
-//                t.setText(String.valueOf(sa.charAt(i)));
-//                p.add(t);
-//
-//        }
+        Paragraph p = new Paragraph();
+        String sa = "Приветит2f";
+        String sub = "";
+        //int a = sa.indexOf('f');
+       // System.out.println(a);
+        int j = 1;
+        int m = 0;
+        float b = (float) 0.3;
+        int afValue = sa.indexOf('в');
+        for (int i = 0; i < sa.length(); i++) {
+            Text t = new Text("");
+
+
+
+              sub = sa.substring(afValue+m,afValue+j);
+              System.out.println(sub);
+              if (sa.charAt(i) == 'в') {
+                 // t.setText(String.valueOf(sa.charAt(i)));
+                  System.out.println(String.valueOf(sa.charAt(i)));
+
+                  //t2.setTextRise((float) 1.2);
+
+                  //t2.setSkew(0,10);
+                  t.setRelativePosition(0, 0, 0, 1f);
+//                  subcount = +1;
+                  j++;
+                  m++;
+
+
+              } else if (sa.charAt(i) == sub.charAt(0)) {
+                 // System.out.println("SUB " + String.valueOf(sa.charAt(i)));
+                  t.setText(String.valueOf(sa.charAt(i)));
+                  //t2.setTextRise((float) 1.2);
+                  //t2.setSkew(0,10);
+
+                  t.setRelativePosition(0, 0, 0, (float) (1+b));
+
+                  j++;
+                  m++;
+                  b+=0.6;
+                  System.out.println("BBB" +b);
+
+          }
+
+          //  System.out.println("В конце " + a);
+            t.setText(String.valueOf(sa.charAt(i)));
+
+            p.add(t);
+
+
+        }
+
 //
 //
 //
@@ -103,40 +140,63 @@ public static int j;
         canvas.closePathStroke();
 
 
-      doc.add(p1.setFont(font));//
-        doc.add(returnRise().setFont(font).setFixedLeading(20));
+      doc.add(returnRise().setFont(font));//
+        //doc.add(returnRise().setFont(font).setFixedLeading(20));
         doc.close();
     }
 
         private Paragraph returnRise() {
             Word w = new Word();
+           // String sub = "";
+            //int a = sa.indexOf('f');
+            // System.out.println(a);
+            String sub = "";
+            //float b = (float) 0.3;
             ArrayList<String> stringArrayList = new ArrayList<>();
             stringArrayList = w.RandomLetter_WithoutSpace(MainWord);
             Paragraph p = new Paragraph();
+            int randomif =0;
 
             for (int i = 0; i <stringArrayList.size(); i++)
             {
 
-                System.out.println(stringArrayList.get(i));
+                float countSetRise = (float) 0.3;
+                int secondsub = 1;
+                int firssub = 0;
+
+               // System.out.println(stringArrayList.get(i));
                 char c = w.RandomLetter(stringArrayList.get(i));
-                for(int j = 0; j<stringArrayList.get(i).length();j++) {
-                    Text t2 = new Text("");
-                    if(stringArrayList.get(i).charAt(j) == c) {
-                        t2.setText(String.valueOf(stringArrayList.get(i).charAt(j)));
-                        System.out.println(String.valueOf(stringArrayList.get(i).charAt(j)));
-                        //t2.setTextRise((float) 1.2);
+                char s = w.RandomLetter(stringArrayList.get(i));
+              //  System.out.println("!!!!!!!!" + c + " " +s );
+                int afValue = stringArrayList.get(i).indexOf(c);for(int j = 0; j<stringArrayList.get(i).length();j++) {
+                Text t2 = new Text("");
+                sub = stringArrayList.get(i).substring(afValue + firssub, afValue + secondsub);
 
-                      //t2.setSkew(0,10);
-                        t2.setRelativePosition(0,0,0,0);
-
-                    }
+                if (stringArrayList.get(i).charAt(j) == c) {
                     t2.setText(String.valueOf(stringArrayList.get(i).charAt(j)));
-                    p.add(t2);
 
 
+                    t2.setRelativePosition(0, 0, 0, 1 + countSetRise);
+
+                    secondsub++;
+                    firssub++;
+                    countSetRise += 0.3;
+                } else if (stringArrayList.get(i).charAt(j) == sub.charAt(0)) {
+                    t2.setText(String.valueOf(stringArrayList.get(i).charAt(j)));
 
 
+                    //t2.setSkew(0,10);
+                    t2.setRelativePosition(0, 0, 0, 1 + countSetRise);
+                    secondsub++;
+                    firssub++;
+                    countSetRise += 0.3;
                 }
+                randomif++;
+                t2.setText(String.valueOf(stringArrayList.get(i).charAt(j)));
+                p.add(t2);
+
+            }
+
                 p.add(" ");
 
 
