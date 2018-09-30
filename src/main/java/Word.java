@@ -1,21 +1,28 @@
-import org.apache.commons.lang.RandomStringUtils;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Word {
-    ArrayList<String> arrayList = new ArrayList<>();
-  //  String word ="Привет гребаный мир гребаныйгребаный";
+  static   ArrayList<String> arrayList = new ArrayList<>();
 
     public static void main(String[] args) {
-        Word w = new Word();
+        String word ="Привет   гребаный мир гребаныйгребаный";
 
-       w.test();
+        Word w = new Word();
+        arrayList =  w.RandomLetter_WithoutSpace(word);
+        for(String s :arrayList) {
+            System.out.println(s);
+            char c = w.RandomLetter(s);
+            System.out.println(c);
+        }
     }
+
+
+
 
     public void test()
     {
-        String word ="Привет гребаный миррр ";
+        String word ="Привет   гребаный миррр ";
         arrayList = RandomLetter_WithoutSpace(word);
    String a[] = new String[2];
         for(int i = 0;i<arrayList.size();i++)
@@ -39,18 +46,20 @@ public class Word {
     }
 
 
-    public ArrayList<String> RandomLetter_WithoutSpace(String word){
+    public ArrayList<String> RandomLetter_WithoutSpace(String string){
+
 ArrayList<String> arrayList = new ArrayList<>();
-            for (String retval : word.split(" ", 0)) {
+            for (String retval : string.split(" ", 0)) {
+                if(retval.length()!=0)
                 arrayList.add(retval);
             }
             return arrayList;
 
     }
     public char RandomLetter(String word) {
+
         Random rnd = new Random();
         int randomLenghtIndex = rnd.nextInt(word.length());//ПОзиция любой  буквы
-        int minus = word.length() - randomLenghtIndex;// Разница между всеми буква и найденой
      char c = word.charAt(randomLenghtIndex);
         String s = "";
 
@@ -60,7 +69,10 @@ ArrayList<String> arrayList = new ArrayList<>();
         }
 
 
-       // System.out.println("Слово " + word +" Буква " + c +" Позиция " + randomLenghtIndex);
+
+
+
+        // System.out.println("Слово " + word +" Буква " + c +" Позиция " + randomLenghtIndex);
 //        System.out.println("Новый рандом " + s);
 //        System.out.println(minus);
 

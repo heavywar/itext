@@ -4,20 +4,17 @@ import com.itextpdf.kernel.colors.DeviceCmyk;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
-import com.itextpdf.kernel.geom.Rectangle;
 import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
-import com.itextpdf.layout.hyphenation.HyphenationConfig;
-import com.itextpdf.layout.property.TextAlignment;
-import com.itextpdf.layout.property.VerticalAlignment;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 
 class TestItest {
@@ -41,10 +38,44 @@ class TestItest {
         PageSize ps = PageSize.A4;
         text1.setFont(font).setFontSize(15);//
         Paragraph p1 = new Paragraph(text1);//
+
         PdfDocument pdfDoc = new PdfDocument(new PdfWriter(dest));
         Document doc = new Document(pdfDoc,ps);
+        ReturnLine ReturnLine = new ReturnLine();
+       List<String> ar = ReturnLine.splitLine("D:\\test.pdf");
         doc.setLeftMargin(0);
         doc.setRightMargin(0);
+    int a = 0;
+    int margin =5;
+        int max=10;
+        int min=5;
+        Random rn = new Random();
+        int diff=max-min;
+
+
+
+       for(String split :ar)
+       {
+           Paragraph p = new Paragraph();
+           int irand = rn.nextInt(diff+1);
+
+           irand+=min;
+           System.out.println(irand);
+           if(a%2 == 0) {
+               p.setMarginLeft(10+margin);
+             //  p.setMarginLeft(10+margin);
+               p.add(split);
+           }
+           else if(a%2 != 0){
+             p.setMarginLeft(6+margin);
+         // p.setMarginRight(6-margin);
+           p.add(split);
+
+           }
+           a++;
+           doc.add(p.setFont(font));
+       }
+
         float pdfWidth1 =  pdfDoc.getDefaultPageSize().getWidth();
         float pdfWidth = pdfDoc.getDefaultPageSize().getWidth()-(doc.getRightMargin()+doc.getLeftMargin());
         float getWithFont = font.getWidth(b1,15 );
@@ -52,7 +83,7 @@ class TestItest {
         width1 /= 1000;
         System.out.println("a4 "  + pdfWidth1);
         System.out.println("width font" +getWithFont);
-       doc.add(p1);//
+      //doc.add(p1);//
 
 
         PdfCanvas canvas = new PdfCanvas(pdfDoc.addNewPage());
@@ -67,7 +98,6 @@ class TestItest {
 
 
         canvas.closePathStroke();
-
 
        // doc.add(returnRise().setFont(font).setFixedLeading(20).setHyphenation(new HyphenationConfig("ru", "none", 2, 2)));
         doc.close();
@@ -118,9 +148,9 @@ class TestItest {
                         firssub++;
                         countSetRise += 0.3;
                     }//Закрытие else
-
                     t2.setText(String.valueOf(stringArrayList.get(i).charAt(j)));
                     p.add(t2);
+
 
                 }//Закрытие фор по буквам.
 
@@ -139,10 +169,8 @@ class TestItest {
                         t2.setText(stringArrayList.get(i));
                         t2.setBackgroundColor(redColor);
                     }
-
                     p.add(t2);
                 }
-
                 p.add(" ");
                 randomif++;
 
