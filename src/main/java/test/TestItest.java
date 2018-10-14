@@ -1,3 +1,4 @@
+package test;
 
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.DeviceCmyk;
@@ -41,7 +42,7 @@ class TestItest {
 
         PdfDocument pdfDoc = new PdfDocument(new PdfWriter(dest));
         Document doc = new Document(pdfDoc,ps);
-        ReturnLine ReturnLine = new ReturnLine();
+        main.ReturnLine ReturnLine = new main.ReturnLine();
        List<String> ar = ReturnLine.splitLine("D:\\test.pdf");
         doc.setLeftMargin(0);
         doc.setRightMargin(0);
@@ -104,14 +105,14 @@ class TestItest {
     }
 
         private Paragraph returnRise() {
-            Word w = new Word();
+            main.Words w = new main.Words();
             Color greenColor = new DeviceCmyk(0.78f, 0, 0.81f, 0.21f);
             Color yellowColor = new DeviceCmyk(0, 0, 0.76f, 0.01f);
             Color redColor = new DeviceCmyk(0, 0.76f, 0.86f, 0.01f);
             Color blueColor = new DeviceCmyk(0.28f, 0.11f, 0, 0);
             String sub;//String Для substring
             ArrayList<String> stringArrayList = new ArrayList<>();
-            stringArrayList = w.RandomLetter_WithoutSpace(MainWord);
+            stringArrayList = w.Word_WithoutSpace(MainWord);
             Paragraph p = new Paragraph();
             int randomif =0;// Увеличивается for для каждого слова ,чтобы выбрать слово которое при использованииr remainder  возвращает 0
             int remainder = 4;//остаток,делиться на ranmomif
