@@ -1,5 +1,5 @@
 package main;
-
+//1)Печать четныый(дырки<-) 2)печать четных
 import com.itextpdf.io.font.PdfEncodings;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.DeviceCmyk;
@@ -13,6 +13,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.hyphenation.HyphenationConfig;
+import com.itextpdf.layout.property.Leading;
 import com.itextpdf.layout.property.Property;
 import com.itextpdf.licensekey.LicenseKey;
 import com.itextpdf.typography.config.StandardScriptConfig;
@@ -27,10 +28,14 @@ public class MainPdf {
     public static final String DEST = "./fonts/tutorial/TXTtest33322.pdf";
     public static final String DEST3 = "./fonts/tutorial/Margin++.pdf";
     public static final String DEST2 = "D:\\text.txt";
-    public static final String FONT = "D:\\V7СоединенияПолный шрифтТЕст.ttf";
-    public static final String FONT1 = "D:\\ArtScript.ttf";
+    public static final String FONT = "D:\\allFonts\\font.ttf";
+    public static final String FONTSpec = "D:\\allFonts\\fontSpecificLetter.ttf";
+    public static final String FONT2 = "D:\\allFonts\\Font2.ttf";
+    public static final String FONT3 = "D:\\allFonts\\Font3.ttf";
+    public static final String FONT4 = "D:\\allFonts\\Font4.ttf";
 
-    private  int sizefont = 15;
+
+    private  int sizefont = 16;
 
     public static void main(String[] args) throws Exception {
         LicenseKey.loadLicenseFile("./fonts/tutorial/itextkey1538302072407_0.xml");
@@ -48,18 +53,26 @@ public class MainPdf {
         Color yellowColor = new DeviceCmyk(0, 0, 0.76f, 0.01f);
         Color pein = new DeviceCmyk(86, 64, 0, 45);
         Color pein1 = new DeviceCmyk(72, 54, 0, 42);
+        Color Greenpein = new DeviceCmyk(83, 0, 65, 24);
+
 
         String MainWord = "При жизни Серова картина экспонировалась на Таврической выставке (1905), организованной Сергеем Дягилевым, на Русской художественной выставке в Париже (1906). Кроме того, портрет демонстрировался на коллективных выставках Союза русских художников. В 1920 году картина перешла в собственность Малого театра. С 1935 года находится в Государственной Третьяковской галерее (инв. номер 28079). Там же хранится единственный известный искусствоведам эскиз к портрету, выполненный Серовым и показывающий, что ещё до начала непосредственной работы художник определил композицию, выбрал ракурс, придающий образу монументальность, и решил сделать акцент на силуэте актрисы.";
 
         PdfFont font = PdfFontFactory.createFont(FONT, PdfEncodings.IDENTITY_H, true);
-        PdfFont font1 = PdfFontFactory.createFont(FONT1, PdfEncodings.IDENTITY_H, true);
+        PdfFont fontSpec = PdfFontFactory.createFont(FONTSpec, PdfEncodings.IDENTITY_H, true);
+        PdfFont font2 = PdfFontFactory.createFont(FONT2, PdfEncodings.IDENTITY_H, true);
+        PdfFont font3 = PdfFontFactory.createFont(FONT3, PdfEncodings.IDENTITY_H, true);
+        PdfFont font4 = PdfFontFactory.createFont(FONT4, PdfEncodings.IDENTITY_H, true);
 
         PdfDocument pdfDoc = new PdfDocument(new PdfWriter(dest));
         PageSize ps = PageSize.A5;
         Document doc = new Document(pdfDoc, ps);
         System.out.println("!!!" + doc.getPdfDocument().getDefaultPageSize().getWidth());
         //1
-       doc.setMargins(8.0394f, 0, 36, 56.6929f);
+
+                //8.0394f
+        //6.5mm auto
+       doc.setMargins(  5.66929f ,0, 36, 61.6929f);
 //2
        //doc.setMargins(8.0394f, 35.6929f, 36.69291338583f, 17.69291338583f);
 
@@ -78,9 +91,10 @@ public class MainPdf {
                                // .setKerningFeature(true)
 
                 ));
+        doc.setProperty(Property.LEADING, new Leading(Leading.FIXED, 28.4965f));
 
 
-//
+
         PdfCanvas canvas = new PdfCanvas(pdfDoc.addNewPage());
 
 
@@ -90,7 +104,7 @@ public class MainPdf {
 
 
 
-        for (double y = 0; y <= 595; y += 14.1732) {
+        for (double y = 3.40157f; y <= 595; y += 14.1732) {
             canvas.moveTo(0, y);
             canvas.lineTo(420, y);
         }
@@ -113,16 +127,18 @@ public class MainPdf {
         int n = 0;
         int nstring = 0;
         char c = ' ';
-
+ float forMagrin = font.getWidth(" " ,sizefont);
         Random r = new Random();
         String space = " ";
-
         boolean title = true;
-        boolean peremos = false;
-        boolean peremos1 = false;
-        String checkLegature = "";
-        String checkLegature1 = "";
-        Boolean IscheckLegature = true;
+        boolean peremos = false; // Для переноса на 1 строку
+        boolean peremos1 = false;// Для красной строки
+        String checkLegature = "";//Лигатуры которые содерадтсья в методе
+        String checkLegature1 = "";//Нужен чтобы определить лиратуру сразу полсе checkLegature
+        Boolean IscheckLegature = true;//Нужен для checkLegature1
+        float max = 0;
+        //Максимальный размер страницы
+        float maxSize = doc.getPdfDocument().getDefaultPageSize().getWidth()-(doc.getLeftMargin()+doc.getRightMargin())-16;
 
 
         float firstcountspacewidth =  font.getWidth(" ",sizefont);
@@ -137,95 +153,84 @@ public class MainPdf {
             int countspaceresult = 0;
             for(int countspace = 0; countspace<stringList.get(icont).length();countspace++)
             {
-               // System.out.println((stringList.get(icont).charAt(countspace)));
                if(stringList.get(icont).charAt(countspace) == ' ')
                    countspaceresult++;
 
             }
-           //System.out.println("countspaceresult" +countspaceresult);
 
             float resultwidth  =  doc.getLeftMargin()+doc.getRightMargin();
-            resultwidth=font.getWidth(stringList.get(icont),sizefont)+doc.getLeftMargin()+doc.getRightMargin();
-           //
-            // System.out.println(" resultwidth  line #" + icont + " = " + resultwidth);
+            // Длина всех символов в строке
+            resultwidth=font.getWidth(stringList.get(icont),sizefont);
+            // Проверка на красную строку(Для разных setMarginleft)
+           if(title)
+               resultwidth+=18.1732f;
+
+           //определение маексимальной строки
+            if(max<resultwidth)
+                max = resultwidth;
+
+            System.out.println(" resultwidth  line #" + icont + " = " + resultwidth );
 
 
 
 
             int firstcountspace  = word.countSpace(stringList.get(icont));
-//            int random_number2 = 1 + (int) (Math.random() * 3);
-//
-//            if(random_number2 == 1)
-//                space = " ";
-//            if(random_number2 == 2)
-//                space = "  ";
-//            if(random_number2 == 3)
-//                space = "  ";
+
             // System.out.println(linetest);
             Paragraph p = new Paragraph();
+            float spaceResult = resultwidth;
             if (!stringList.get(icont).isEmpty()) {
-               // System.out.println( "пробелов- " +firstcountspace +" line # " + n + "-" + stringList.get(icont));
-                int randomGet1 = 0;
-                stringListRandom = word.Word_WithoutSpace(stringList.get(icont));
+               System.out.println( stringList.get(icont));
+               //Деление строки на слова, нужен для работы со словами (text rise up)
+                stringListRandom = word.Word_WithoutSpaceforMainPdf(stringList.get(icont));
 
 
-//                for(int i = 0; i<stringListRandom.size();i++) {
-//                    int random_number1 = 1 + (int) (Math.random() * 3);
-//
-////                    if(random_number1 == 1)
-////                        space = " ";
-////                    if(random_number1 == 2)
-////                        space = "  ";
-////                    if(random_number1 == 3)
-////                        space = "  ";
-////                    if(stringListRandom.get(i).length()>5) {
-////                        randomGet1 = r.nextInt(stringListRandom.size());
-////
-////
-////                    }
-               // }
                 peremos = false;
                 peremos1 = false;
-                float spaceResult = resultwidth;
-                float textRise = 0;
+
+
                 float countLeguture = 0;
+                int countRise = 0;
+                //Проход по словам в строке использован итератор для замены perenos
                 for (Iterator<String> iter = stringListRandom.listIterator(); iter.hasNext(); ){
                     boolean hyphen = true;
+                    float textRise = 0;
                     String b1 = iter.next();
 
 
-                        //resultwidth+=font.getWidth(b1,sizefont);
-
-                    if(b1.equals("perenos!!%%"))
+                  //Перенос который добавляет в pdfToTxt для переноса в main
+                    if(b1.equals("perenos!!%% ")||b1.equals("perenos!!%%"))
                     {
-
+                        System.out.println("perenos");
                         peremos = true;
-                    //  iter.remove();
-                       // j++;
+
                     }
-                    if(b1.equals("perenos!!%%1"))
+                    if(b1.equals("perenos!!%%1 ") || b1.equals("perenos!!%%1") )
                     {
                         peremos1 = true;
-                        //  iter.remove();
-                        // j++;
+                        System.out.println("perenos1");
+
                     }
 
                     String a1 = b1.replaceAll("perenos!!%%(\\w*)","");
-                    space = " ";
-                   if(spaceResult< 419 )
+                    space = "";
+                    //Добавление пробелов, если в строку влезают пробелы то добавляем
+                   if(spaceResult<maxSize)
                         {
+                        int random_number2 = 1 + (int) (Math.random() *2);
 
-                        int random_number2 = 1 + (int) (Math.random() * 2);
-                        if(random_number2 == 2) {
-                            spaceResult += font.getWidth("  " ,sizefont);
-                            if(spaceResult< 419){
-                                space = "  ";
+//                        if(random_number2 == 2) {
+                            //Проверка нужна чтобы не добавить лишний пробел
+                            spaceResult += font.getWidth(" " ,sizefont);
+                            if(spaceResult< maxSize){
+                                space = " ";
 
-                            }
+                           // }
 
                         }
 
                     }
+                    //Проверка для букв изменяют положение(вверх вниз)
                     for(int Nhyphen = 0; Nhyphen<a1.length(); Nhyphen++)
                     {
                         if(a1.charAt(Nhyphen) == '-')
@@ -237,13 +242,99 @@ public class MainPdf {
 
 
                     //String b1 = iter.next();
-                    if(nstring%11 ==0&&a1.length()>=5 && a1.length()>=8 && !word.isNumber(a1))
+
+                    //Буквы вверх
+                    if(nstring%8 ==0&& a1.length()>5 && !word.isNumber(a1) && word.isLeterSpec_Half(a1))
                     {
 
 
                         int random_number1 = 2 + (int) (Math.random() *3);
-                        int countRise = 0;
 
+
+                        for(int i = 0; i< a1.length();i++)
+                        {
+
+
+                            Text t = new Text("");
+
+                            try {
+
+                                IscheckLegature = true;
+                                //1)Нужен чтобы определить лигатуру, спомощью этого попределяются пары букв (Привет - пр,ри,ив...)
+                                checkLegature = a1.substring(i,i+2);
+
+                                //2)С помощью функцции в которой указаны лигатуру ищутся совпадения
+                                if(word.isLegature(checkLegature)){
+                                    t = new Text(checkLegature);
+                                    p.add(t);
+                                    //Увеличение i нужно чтобы после добавления ligature счетчик продолжал после этой пары букв
+                                    //Например : Привет - Лигатура Пр, следующая i должна быть на "и"->I+=2;
+                                    i+=2;
+                                    countLeguture++;
+                                    IscheckLegature= false;
+                                    t.setTextRise(textRise);
+
+                                }
+
+                                if(!IscheckLegature) {
+                                    //3)Этот определяет следующую пару букв после метода выше, т.к. Есди цикд увеличит i++ то после одна буква пропустится
+                                    //Например Пр, следующая i должна быть на "и"->I+=2 после цикла i увеличится еще на i++ ->Будет i+=3;
+                                    textRise+=0.8;
+                                    checkLegature1 = a1.substring(i, i + 2);
+                                    if(word.isLegature(checkLegature1)) {
+                                        t = new Text(checkLegature1);
+                                        p.add(t);
+                                        i+=2;
+                                        t.setTextRise(textRise);
+                                        textRise+=0.8;
+                                    }
+                                }
+                               //обработка ощибки из за i+2;
+                            } catch (StringIndexOutOfBoundsException e) {
+
+                            }
+                            //обработка ощибки из за i+2;
+                            if (i + 1> a1.length()) {
+                                break;
+                            }
+
+                            int random_number2 = 1 + (int) (Math.random() *4);
+
+                            if (i == 0 && word.isSpecifiedLetterLower(a1.charAt(i))) {
+                                t = new Text(String.valueOf(a1.charAt(i))).setFont(fontSpec);
+                            }
+                            else {
+                                if (random_number2 == 1)
+                                    t = new Text(String.valueOf(a1.charAt(i))).setFont(font);
+                                else if (random_number2 == 2)
+                                    t = new Text(String.valueOf(a1.charAt(i))).setFont(font2);
+                                else if (random_number2 == 3)
+                                    t = new Text(String.valueOf(a1.charAt(i))).setFont(font3);
+                                else if (random_number2 == 4)
+                                    t = new Text(String.valueOf(a1.charAt(i))).setFont(font4);
+                            }
+
+                            t.setTextRise(textRise);
+
+
+                            t.setBackgroundColor(yellowColor);
+                             countRise++;
+                            if(i+1<a1.length()/2)
+                                if(a1.length()<10)
+                                textRise+=0.85;
+                            else
+                                    textRise+=0.65;
+                            else
+                                textRise+=0;
+                            //p.add(t.setBackgroundColor(greenColor));
+                        }
+
+
+
+                    }
+//
+                    //Буквы вниз
+                    else if(icont%19!=0 &&nstring%16 ==0 && a1.length()>=5 && a1.length()>=8 &&!word.isNumber(a1) &&word.isLeterSpec_Full(a1)) { //Вниз
                         for(int i = 0; i< a1.length();i++)
                         {
 
@@ -253,29 +344,26 @@ public class MainPdf {
                             try {
                                 IscheckLegature = true;
                                 checkLegature = a1.substring(i,i+2);
-                                System.out.println("S1 " +checkLegature);
 
                                 if(word.isLegature(checkLegature)){
                                     t = new Text(checkLegature);
                                     p.add(t);
-                                    System.out.println("+");
                                     i+=2;
                                     countLeguture++;
                                     IscheckLegature= false;
-                                    t.setTextRise(textRise);
+                                    t.setTextRise(-textRise);
 
                                 }
 
                                 if(!IscheckLegature) {
                                     textRise+=0.8;
                                     checkLegature1 = a1.substring(i, i + 2);
-                                    System.out.println("S2 " +checkLegature1);
                                     if(word.isLegature(checkLegature1)) {
                                         t = new Text(checkLegature1);
                                         p.add(t);
                                         i+=2;
-                                        t.setTextRise(textRise);
-                                        textRise+=0.8;
+                                        t.setTextRise(-textRise);
+                                        textRise+=0.2;
                                     }
                                 }
 
@@ -283,125 +371,224 @@ public class MainPdf {
 
                             }
                             if (i + 1> a1.length()) {
-                                System.out.println("++");
                                 break;
                             }
 
-                            //t.setText(String.valueOf(a1.charAt(i)));
                             t  = new Text(String.valueOf(a1.charAt(i)));
 
-                            t.setTextRise(textRise);
+                            t.setTextRise(-textRise);
                             p.add(t);
 
-                            t.setBackgroundColor(yellowColor);
-                             countRise++;
-                            if(i+1<a1.length()/2)
+                         //  t.setBackgroundColor(greenColor);
+                            countRise++;
+                            if(i-1>a1.length()/2)
                                 textRise+=0.85;
                             else
                                 textRise+=0;
                         }
-                       // t.setSkew(random_number1,0);
 
-p.add(" ");
-
-                    }
-//                    else if(stringListRandom.get(j) ==stringListRandom.get(randomGet1)) {
-//
-//                        Text t = new Text(stringListRandom.get(j)+space);
-//                        t.setHorizontalScaling(1.4f);
-//                        t.setFontSize(15);
-//                          //  t.setBackgroundColor(redColor);
-//                            p.add(t);
-//
-//                    }
-                    else if(nstring%16 ==0 && !word.isNumber(a1)) {
-                        int random_number1 = 2 + (int) (Math.random() *3);
-                        Text t = new Text(a1+" ");
-                        t.setSkew(random_number1*(-1),0);
-                        // t.setBackgroundColor(greenColor);
-                        p.add(t);
 
 
                     }
-
-                    else if(nstring%19 ==0 && hyphen && !word.isNumber(a1) && a1.length()>5 && word.isLeterDZ(a1)) {
-                       // System.out.println("+ " +resultwidth);
-//                        String h = b1.substring(0,b1.length()/2);
-//                        String h1 = b1.substring(b1.length()/2);
-//                        Text t = new Text(h);
-//                        t.setSkew(14,0);
-//                        p.add(t);
-//                        Text t2 = new Text(h1);
-//                        t2.setSkew(-14,0);
-//                        p.add(t2);
-//                        System.out.println(h);
-//                        System.out.println(h1);
-                        int count = 0;
+//Буквы вверх\вниз
+                    else if(nstring%2 ==0 && hyphen && !word.isNumber(a1) && a1.length()>5) {
                         float nplus = 0f;
-                        int ncount = 0;
                         float nminus =  1.3f;
-                        int countspace = 0;
-                        for(int i =0; i<a1.length();i++) {
-                            countspace++;
+                        if(a1.length()<8) {
+                            for (int i = 0; i < a1.length(); i++) {
+                                Text t2 = new Text(String.valueOf((a1.charAt(i))));
+
+                                if (a1.length() / 2 > i) {
+                                    t2.setTextRise(nplus);
+                                    nplus += 1.0;
+                                } else {
+
+                                    t2.setTextRise(nplus - nminus);
+
+                                    nminus += 1.0;
+
+                                }
 
 
-                            Text t2 = new Text(String.valueOf((a1.charAt(i))));
+                                p.add(t2);
 
-                            if (a1.length() / 2 > ncount) {
-                                t2.setTextRise(nplus);
-                              //  t2.setFont(font1);
-                                nplus += 1.0;
-                            } else {
 
-                                t2.setTextRise(nplus - nminus);
-
-                                nminus += 1.0;
+                               // t2.setBackgroundColor(redColor);
 
                             }
-                            ncount++;
-                         //t2.setBackgroundColor(redColor);
-                           p.add(t2);
-                            if (countspace == a1.length())
-                                p.add(space);
+                        }
+                        else{
+                            int NumberofLetters = 0;
+
+                            switch (a1.length())
+                            {
+                                case 12: NumberofLetters = 1;break;
+                                case 13 : NumberofLetters = 1;break;
+                                case 14: NumberofLetters = 2;break;
+                                case 15: NumberofLetters = 2;break;
+                                case 16: NumberofLetters = 3;break;
+                                case 17: NumberofLetters = 3;break;
+
+                                default:NumberofLetters = 0;break;
+                            }
+                             nplus =0 ;
+                             nminus =  0;
+                            for(int i =0; i<a1.length();i++) {
+                                int random_number2 = 1 + (int) (Math.random() *4);
+                                Text t = new Text("");
+                                if (i == 0 && word.isSpecifiedLetterLower(a1.charAt(i))) {
+                                    t = new Text(String.valueOf(a1.charAt(i))).setFont(fontSpec);
+                                }
+                                else {
+                                    if (random_number2 == 1)
+                                        t = new Text(String.valueOf(a1.charAt(i))).setFont(font);
+                                    else if (random_number2 == 2)
+                                        t = new Text(String.valueOf(a1.charAt(i))).setFont(font2);
+                                    else if (random_number2 == 3)
+                                        t = new Text(String.valueOf(a1.charAt(i))).setFont(font3);
+                                    else if (random_number2 == 4)
+                                        t = new Text(String.valueOf(a1.charAt(i))).setFont(font4);
+                                }
+
+
+                                    if(i>2 && i<=4+NumberofLetters) {//Со второй буквы по 4(+case) буквы вверх
+                                    nplus += 1.0;
+                                   // t2.setBackgroundColor(greenColor);
+                                    t.setTextRise(nplus - nminus);
+
+                                }
+
+
+                               // с 5(+case) по 7(2х case, потому что в начале ничего не прибавляется (i>2)) ,буквы винз
+                                if(i>=5+NumberofLetters && i<7+NumberofLetters+NumberofLetters ) {
+                                    nminus += 1.0;
+                                   // t2.setBackgroundColor(redColor);
+                                    t.setTextRise(nplus - nminus);
+
+
+                                }
+
+
+
+
+
+                                    p.add(t);
+
+
+                               // t2.setBackgroundColor(greenColor);
+
+                            }
 
 
                         }
 
+
                     }
 
-                    else {
-                        p.add(a1+space);
-                        //p.setBackgroundColor(greenColor);
+                    else { //Все
+                        for(int i = 0; i< a1.length();i++)
+                        {
+
+
+
+                            Text t = new Text("");
+
+                            try {
+                                IscheckLegature = true;
+                                //1)Нужен чтобы определить лигатуру, спомощью этого попределяются пары букв (Привет - пр,ри,ив...)
+
+                                checkLegature = a1.substring(i,i+2);
+                                //2)С помощью функцции в которой указаны лигатуру ищутся совпадения
+
+                                if(word.isLegature(checkLegature)){
+                                    t = new Text(checkLegature);
+                                    p.add(t);
+                                    i+=2;
+
+                                    IscheckLegature= false;
+
+                                }
+                                //Определяем специальные буквы которые идут первые или псоле опредленных прописных букв
+                                //Например г,Бг
+                                if(word.isLegatureSpec(checkLegature))
+                                {
+                                    t = new Text(checkLegature);
+                                    t.setFont(fontSpec);
+                                    System.out.println("+");
+                                    p.add(t);
+                                    i += 2;
+                                    IscheckLegature = false;
+                                    //Увеличение i нужно чтобы после добавления ligature счетчик продолжал после этой пары букв
+                                    //Например : Привет - Лигатура Пр, следующая i должна быть на "и"->I+=2;
+                                }
+
+                              //3)Этот определяет следующую пару букв после метода выше, т.к. Есди цикд увеличит i++ то после одна буква пропустится
+                                //Например Пр, следующая i должна быть на "и"->I+=2 после цикла i увеличится еще на i++ ->Будет i+=3;
+                                if(!IscheckLegature) {
+                                    textRise+=0.8;
+                                    checkLegature1 = a1.substring(i, i + 2);
+                                   if(word.isLegature(checkLegature1)) {
+                                        t = new Text(checkLegature1);
+                                        p.add(t);
+                                        i+=2;
+
+                                    }
+                                }
+                          //Обработка ошибки.
+                            } catch (StringIndexOutOfBoundsException e) {
+
+                            }
+                            //Обработка ошибки, чтобы не добавлялась лишняя буква
+                            if (i + 1> a1.length()) {
+                              //  System.out.println("++");
+                                break;
+                            }
+
+                            //t.setText(String.valueOf(a1.charAt(i)));
+                            int random_number2 = 1 + (int) (Math.random() *4);
+
+                            if (i == 0 && word.isSpecifiedLetterLower( a1.charAt(i)))
+                                t= new Text(String.valueOf(a1.charAt(i))).setFont(fontSpec);
+                                else {
+                                    if(random_number2==1)
+                                        t = new Text(String.valueOf(a1.charAt(i))).setFont(font);
+                                    else if (random_number2 == 2)
+                                        t = new Text(String.valueOf(a1.charAt(i))).setFont(font2);
+                               else if(random_number2==3)
+                                    t = new Text(String.valueOf(a1.charAt(i))).setFont(font3);
+                                else if (random_number2 == 4)
+                                    t = new Text(String.valueOf(a1.charAt(i))).setFont(font4);
+
+
+                                }
+                            p.add(t);
+
+
+                        }
+
+
                     }
+                    p.add(space);
+                   //nstring подсчет сколько раз пройден цикл со словам, нужен чтобы определить в каком слове доавбить  setTextRise
                     nstring++;
 
 
 
                 }
-               //
-                // System.out.println(stringListRandom);
-            } else {
-                // int countspace  = word.countSpace(linetest);
-                //  System.out.println( "пробелов вначаел - " +countspace + "line # " + n + "-" + linetest );
-             //   p = new Paragraph(stringList.get(icont));
 
             }
 
 
-          //  stringList.get(icont).replace("perenos!!%%", "HELLO WORLD");
             p.setMarginTop(0);
             p.setMarginBottom(0);
             if (title) {
-                p.setFirstLineIndent(18.1732f);
-               // System.out.println("+");
+                p.setFirstLineIndent(28.3465f);
                 title = false;
-            } else {
+           }
+             else {
                 title = false;
-                //  p.setMarginRight(13);
             }
-            if (peremos1) {
-
-                p.setMarginTop(0);
+            if (peremos1 ) {
 
                 title = true;
 
@@ -418,20 +605,38 @@ p.add(" ");
 
 
             }
-            if(resultwidth<405&&n%2 == 0)
+            //Установка разных margin,если хватает места в строке( !resultwidth+6>maxSize) то добавляем
+            System.out.println(spaceResult);
+            //formargin нужен, потому что spaceResult складывается лишний раз с size пробела.
+//            if(spaceResult-forMagrin+6<maxSize)
+//            {
+//                System.out.println("+++++++=====================");
+//                if(n%2 == 0 )
+//                    p.setMarginLeft(4);
+//                if(n%3 == 0 )
+//                    p.setMarginLeft(6);
+//
+//
+//            }
+            if( n%2 == 0){
+                    System.out.println("4444+++++++=====================");
+
+                p.setMarginLeft(4);
+
+
+            }
+
+            if( n%3 == 0)
             {
-                if(n%2 == 0 )
-                    p.setMarginLeft(6);
-                if(n%3 == 0 )
-                    p.setMarginLeft(8);
+                System.out.println("666+++++++=====================");
+
+                p.setMarginLeft(6);
 
 
             }
-            else if (resultwidth<360&&n%3 == 0){
-                if(n%3 == 0)
-                    p.setMarginLeft(10);
-               // p.setBackgroundColor(redColor);
-            }
+
+
+
             String s = "в б";
             Text t = new Text("в б"+"   ");
 //p.setFontColor(pein1);
@@ -446,7 +651,7 @@ p.add(" ");
 //                    ));
 
 
-            doc.add(p.setFixedLeading(28.3465f));
+            doc.add(p);
             n++;
         }
 
@@ -454,6 +659,8 @@ p.add(" ");
         // System.out.println(word.getArrayList());
 
         doc.close();
+        System.out.println(max);
+        System.out.println(maxSize);
     }
 
 }

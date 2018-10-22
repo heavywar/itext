@@ -35,14 +35,26 @@ public class Words {
         return true;
     }
 
-    public boolean isLeterDZ(String str) {
+    public boolean isLeterSpec_Half(String str) {
         if (str == null || str.isEmpty()) return false;
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == 'д' || str.charAt(i) == 'у' || str.charAt(i) == 'з' || str.charAt(i) == 'щ' || str.charAt(i) == 'ц')
+        for (int i = str.length()/2; i < str.length(); i++) {
+            if (str.charAt(i) == 'д' || str.charAt(i) == 'у' || str.charAt(i) == 'з' || str.charAt(i) == 'щ' || str.charAt(i) == 'р' ||str.charAt(i) == 'ф'||str.charAt(i) == 'ц'||str.charAt(i) == 'щ' )
                 return false;
         }
         return true;
     }
+    public boolean isLeterSpec_Full(String str) {
+        if (str == null || str.isEmpty()) return false;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == 'д' || str.charAt(i) == 'у' || str.charAt(i) == 'з' || str.charAt(i) == 'щ' || str.charAt(i) == 'р' ||str.charAt(i) == 'ф'||str.charAt(i) == 'ц'||str.charAt(i) == 'щ' )
+                return false;
+        }
+        return true;
+    }
+    
+    
+
+
 
     public ArrayList<String> Word_WithoutSpace(String string) {
         ArrayList<String> arrayList = new ArrayList<>();
@@ -50,6 +62,20 @@ public class Words {
 
             if (retval.length() != 0 && !retval.equals(" ")) {
                 arrayList.add(retval);
+                //  arrayList.add(" ");
+            }
+//
+
+        }
+        return arrayList;
+    }
+    public ArrayList<String> Word_WithoutSpaceforMainPdf(String string) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (String retval : string.split(" ", 0)) {
+
+            if (retval.length() != 0 && !retval.equals(" ")) {
+                arrayList.add(retval+ " ");
+                //arrayList.add(" ");
                 //  arrayList.add(" ");
             }
 //
@@ -106,7 +132,7 @@ return false;
     }
     public static  boolean isLegature(String string)
     {
-        String []Legature = {"аг","ав","ал","ах","ач","ая","аз","бв","бг","бя","бе","бя","бч","бж","вл","вя","ве","иг","ие","из","иг","их","ия","лег","рег","ег","еж","ез","еч","ог","оз","ож","ом","ол","оч","оэ","оя","о ","б ","в ","ст","пр","ее","ей"," в","иеч","иез","азг","вз","вг","ая","уз"," з"," ч"," х"," г","ич","ое","ий","о-","б-","в-","ю-","ъ-","ь-","э-","ав-","бв-","нг"};
+        String []Legature = {"аг","ав","ал","ах","ач","ая","аз","бв","бг","бя","бе","бя","бч","бж","вл","вя","ве","иг","ие","из","иг","их","ия","лег","рег","ег","еж","ез","еч","ог","оз","ож","ом","ол","оч","оэ","оя","о ","э ","ю ","ъ ","ь ","б ","в ","ст","пр","ее","ей"," в","иеч","иез","азг","вз","вг","ая","уз"," з"," ч"," х"," г","ич","ое","ий","о-","б-","в-","ю-","ъ-","ь-","э-","ав-","бв-","нг"};
         for(int i = 0; i<Legature.length;i++)
         {
             if(string.equals(Legature[i]))
@@ -118,4 +144,38 @@ return false;
 
 
     }
+    public static boolean isLegatureSpec(String string) {
+        String[] Legature = {"Вг", "Вж", "Вэ", "Вч", "Вх",
+                "Бг", "Бж", "Бэ", "Бч", "Бх",
+                "Гг", "Гж", "Гэ", "Гч", "Гх",
+                "Дг", "Дж", "Дэ", "Дч", "Дх",
+                "Зг", "Зж", "Зэ", "Зч", "Зх",
+                "Ог", "Ож", "Оэ", "Оч", "Ох",
+                "Рг", "Рж", "Рэ", "Рч", "Рх",
+                "Уг", "Уж", "Уэ", "Уч", "Ух",
+                "Фг", "Фж", "Фэ", "Фч", "Фх",
+                "Рг", "Рж", "Рэ", "Рч", "Рх",
+                "Юг", "Юж", "Юэ", "Юч", "Юх"};
+        for (int i = 0; i < Legature.length; i++) {
+            if (string.equals(Legature[i]))
+                return true;
+
+
+        }
+        return false;
+
+
+    }
+    public static boolean isSpecifiedLetterLower(char Char) {
+        char[] Legature = {'г', 'ж', 'з', 'ч', 'х'};
+        for (int i = 0; i < Legature.length; i++) {
+            if (Char == Legature[i])
+                return true;
+
+
+        }
+        return false;
+
+    }
+
 }
