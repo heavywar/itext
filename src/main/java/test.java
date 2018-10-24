@@ -73,7 +73,6 @@ public class test {
 
         maxSize = doc.getPdfDocument().getDefaultPageSize().getWidth() - (doc.getLeftMargin() + doc.getRightMargin());
 
-        Paragraph ps1 = new Paragraph();
       //String s = "ремонтник4  авторемонтник5 авторемонтник6";
         // ps1.add(s);
         // doc.add(ps1);
@@ -92,37 +91,19 @@ public class test {
         // System.out.println("Строка" + font.getWidth(line,sizefont));
         System.out.println("one " + font.getWidth("для персональных компьютеров под управлением", sizefont));
         Words words = new Words();
-        String space = " ";
-        float resulttest = 0;
-        ArrayList<String> arrayList;
         Hyphenator hyphenator = new Hyphenator();
         ArrayList<String> StringRes = new ArrayList<>();
         StringRes.add("");
         StringRes.add("");
-
-
-        BufferedReader br = new BufferedReader(new FileReader(DEST2));
-        //String line = ;
-        //Paragraph p;
-        boolean Bdoc = true;
         Paragraph p = new Paragraph();
-        String a = "";
-        float resultMargin = 0;
         Boolean parag = true;
-        Boolean Bspace = true;
-        int last = 0;
-        int lastI = 0;
-        String lastS = "";
         Text t2 = new Text("");
-        Text t3 = new Text("");
  int n = 0;
         List<String> Alist = words.Word_WithoutSpaceforMainPdf(line);
         float result = 0;
        WidthStroke((ArrayList<String>) Alist);
-        //System.out.println(maxSize);
         int count = 0;
         int listWidthCount = 0;
-        boolean lastString= true;
         float Fspace = font.getWidth(" ",sizefont);
         System.out.println("ListWidth = " + ListWidth);
         System.out.println(ListRandFont);
@@ -132,44 +113,30 @@ public class test {
 
             if (!parag) {
                 count++;
-                //last += p.getChildren().size();
                 p = new Paragraph();
                 if (count % 2 == 0) {
-                    //System.out.println("++++++++++++=========");
-                    // p.setMarginLeft(4);
-                   // result += 5;
+
+                     p.setMarginLeft(3);
+                    result += 3;
                 }
-                if (count % 3 == 0) {
-                    // System.out.println("++++++++++++=========");
-                    // p.setMarginLeft(7);
-                  //  result += 8;
+                 if (count % 3 == 0) {
+                     p.setMarginLeft(5);
+                    result += 5;
                 }
                 p.add(t2);
-                // parag = true;
-                lastString = false;
                 System.out.println("listWidthCount"+ listWidthCount);
                 System.out.println("countLAst" + countLAst);
-               // int listWidthCount1 = listWidthCount
-                if(listWidthCount==countLAst)
-                {
-                    System.out.println("!!!+++");
-                    //parag = false;
-                    //paragCount =false;
-                }
 
             }
 
 
             if (parag) {
                 for (int j = 0; j < Alist.get(i).length(); j++) {
-                       int rand = 1 + (int) (Math.random() *3);
                     t = new Text(String.valueOf(Alist.get(i).charAt(j)));
-                    //System.out.println(n + " " +ListRandFont.get(n));
                         if(ListRandFont.get(n)==1) {
                             t.setFont(font1);
                             result += font1.getWidth(Alist.get(i).charAt(j), sizefont);
                         }
-
 
                         if(ListRandFont.get(n)==2) {
                             t.setFont(font2);
@@ -187,8 +154,6 @@ public class test {
                             if (Alist.get(i).charAt(j) == ' ') {
                                t = new Text("  ");
                                 Fspace+=Fspace;
-
-
 
                             }
                         }
@@ -223,13 +188,9 @@ public class test {
 
                 }
 
-
-
             } catch (IndexOutOfBoundsException ex) {
 
             }
-
-
 
                if(Alist.size()-1 == i) { //Нужен чтобы доавить последнюю стоку.
                    System.out.println("!!!FALSE+");
@@ -239,35 +200,34 @@ public class test {
             if (!parag ||!paragCount) {
                 p.add(t);
                 doc.add(p);
-
             }
 
         }
 
-        System.out.println("last " + last);
-       System.out.println("Size " + Alist.size());
-
-
-
+        System.out.println("count+++" + count);
         doc.close();
 
-
     }
-
-
-
     public static void WidthStroke(ArrayList<String> Alist) {
-        Text t = new Text("");
         Boolean parag = true;
         float result = 0;
+         int count = 0;
         Hyphenator hyphenator = new Hyphenator();
         for (int i = 0; i < Alist.size(); i++) {
-            //Text t = new Text("");
+ if(!parag){
+     count++;
+                 if (count % 2 == 0) {
+                     result += 3;
+                 }
+                if (count % 3 == 0) {
 
-
-
+                    result += 5;
+                }
+ }
 
             if (parag) {
+                //last += p.getChildren().size();
+
                 for (int j = 0; j < Alist.get(i).length(); j++) {
 
                     int rand = 1 + (int) (Math.random() *3);
@@ -275,7 +235,6 @@ public class test {
 
                         result += font1.getWidth(Alist.get(i).charAt(j), sizefont);
                     }
-
 
                     if(rand==2) {
 
@@ -293,47 +252,25 @@ public class test {
                 }
             }
             parag = true;
-
-
-
-
             System.out.println("++слово1 " + Alist.get(i) + "++width1  =" + result);
             try {
 
-
                 if (result + font.getWidth(Alist.get(i + 1), sizefont) > maxSize) {
                     System.out.println(" resultMain" + result);
-                    // String string = hyphenator.hyphenateWord(Alist.get(i));
-
                     float f= hyphenator.widtCount(result, maxSize, font, Alist.get(i + 1));
-                   // System.out.println("buffer " + StringRes);
                     float letter_after_hyph = hyphenator.minusResult;
                     System.out.println("БУквы после дифиса" + hyphenator.minusResult);
-                   // t = new Text(StringRes.get(0));
                     result = 0 + letter_after_hyph;
                     ListWidth.add(f);
-                    // p = new Paragraph();
                      countLAst++;
                     parag = false;
 
 
-
                 }
 
-                // System.out.println("aaaa " + a );
-            } catch (IndexOutOfBoundsException ex) {
-
-            }
-
-            // System.out.println("aaaaa" + a);
-
-
-            //System.out.println("!!!!!"+resulttest);
-
+            } catch (IndexOutOfBoundsException ex) { }
         }
-
-
-        // System.out.println("aaaaa" + a);
+        System.out.println("count+++" + count);
 
     }
 }

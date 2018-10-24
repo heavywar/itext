@@ -64,8 +64,8 @@ public class Hyphenator {
             int index = hyphenatedText.indexOf(hp.pattern);
             while(index != -1) {
                 int actualIndex = index + hp.position;
-                hyphenatedText = hyphenatedText.substring(0, actualIndex) + "-"  + hyphenatedText.substring(actualIndex);
-                text = text.substring(0, actualIndex) +  "-" + text.substring(actualIndex);
+                hyphenatedText = hyphenatedText.substring(0, actualIndex) + "%-%"  + hyphenatedText.substring(actualIndex);
+                text = text.substring(0, actualIndex) +  "%-%" + text.substring(actualIndex);
                 index = hyphenatedText.indexOf(hp.pattern);
             }
         }
@@ -280,7 +280,7 @@ public class Hyphenator {
 
     public static ArrayList<String> ArrayList(String string){
         ArrayList<String> arrayList = new ArrayList<>();
-        for (String retval : string.split("-", 0)) {
+        for (String retval : string.split("%-%", 0)) {
     String delespace;
     delespace = retval.replace(" " ,"");
                 arrayList.add(delespace);
