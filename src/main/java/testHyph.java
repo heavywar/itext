@@ -75,14 +75,20 @@ public class testHyph {
                         // .setKerningFeature(true)
 
                 ));
-        System.out.println(font.getWidth("ав",16));
-         Paragraph p = new Paragraph("ав");
-        Text t = new Text("аг");
-        ArrayList<Integer[]> arrayList = new ArrayList<>();
-        Integer[] integers =new Integer[10];
+        int a1[][] = new int[5][];
+        ArrayList<Integer> arl = new ArrayList<>();
+        for(int i =0;i<5;i++) {
+            int rand = 1 + (int) (Math.random() *3);
+            arl.add( i,rand);
+        }
 
-ArrayList<Float> arrayList1 = new ArrayList<>();
-        arrayList1.add(1.2f);
-    }
+
+            System.out.println(arl);
+
+
+
+
 
     }
+  }
+

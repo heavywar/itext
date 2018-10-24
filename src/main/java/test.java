@@ -34,9 +34,13 @@ public class test {
     public static final String FONT2 = "D:\\allFonts\\Font2.ttf";
     public static final String FONT3 = "D:\\allFonts\\Font3.ttf";
     public static float maxSize;
+    public static PdfFont font1;
+    public static PdfFont font2;
     public static PdfFont font;
    static int sizefont = 16;
    static  ArrayList<Float> ListWidth = new ArrayList<>();
+   static ArrayList<Integer> ListRandFont = new ArrayList<>();
+
 
     public static void main(String[] args) throws Exception {
         LicenseKey.loadLicenseFile("./fonts/tutorial/itextkey1538302072407_0.xml");
@@ -52,9 +56,8 @@ public class test {
         Color pein = new DeviceCmyk(86, 64, 0, 45);
         Color pein1 = new DeviceCmyk(72, 54, 0, 42);
         font = PdfFontFactory.createFont(FONT, PdfEncodings.IDENTITY_H, true);
-
-       // PdfFont font1 = PdfFontFactory.createFont(FONT2, PdfEncodings.IDENTITY_H, true);
-       // PdfFont font2 = PdfFontFactory.createFont(FONT3, PdfEncodings.IDENTITY_H, true);
+       font1 = PdfFontFactory.createFont(FONT2, PdfEncodings.IDENTITY_H, true);
+         font2 = PdfFontFactory.createFont(FONT3, PdfEncodings.IDENTITY_H, true);
 
 
         PdfDocument pdfDoc = new PdfDocument(new PdfWriter(dest));
@@ -73,20 +76,20 @@ public class test {
       //String s = "ремонтник4  авторемонтник5 авторемонтник6";
         // ps1.add(s);
         // doc.add(ps1);
-        String line = "ник1 авторемонтник2 авторемffffffонтник3 авторемонтник4 авторемонтник5 авторемонтник6 авторемонтник7  ";
+      // String line = "ник1 авторемонтник2 авторемffffffонтник3 авторемонтник4 авторемонтник5 авторемонтник6 авторемонтник7  авторемонтник8";
         //автореrrrrмонтник5  авторемонтник6 авторемонтник7 авторемонтник8 автореrrrrмонтник9 автореrrrrмонтник10"  ;
-//        String line  = "Midnight Club II (с англ.-  «Полночный клуб 2») — видеоигра в жанре аркадных авто и мотогонок, разработанная студией Rockstar San Diego и изданная компанией Rockstar Games для игровых приставок PlayStation 2 и Xbox и для персональных компьютеров под управлением Windows в 2003 году. За локализацию гоночной аркады в России была ответственна компания «1С-СофтКлаб». 4 января 2008 года Midnight Club II была переиздана в сервисе Steam. В марте 2013 года игра стала доступна в разделе «PS2 Classics» сервиса PlayStation Network для консоли PlayStation 3. Midnight Club II является продолжением Midnight Club: Street Racing и второй игрой серии Midnight Club[⇨]." +
-//
-//        "Как и в предшественнике, в Midnight Club II присутствуют два режима — «Аркада», в котором игрок может свободно участвовать в гонках в одиночном или многопользовательском вариантах, предварительно настроив условия соревнований, и «Карьера», в котором представлена сюжетная линия, где главный герой участвует в нелегальных заездах, стремясь получить статус лучшего уличного гонщика. Действие игры происходит в трёх реальных городах мира — Лос-Анджелесе, Париже и Токио, по которым предоставлена свобода передвижения. По мере прохождения игры становятся доступными новые автомобили и мотоциклы, достающиеся игроку от поверженных соперников. Для каждого транспортного средства характерны его особые способности, помогающие игроку в прохождении гонок[⇨]." +
-//
-//        "Midnight Club II была анонсирована в 2002 году. Благодаря успеху Midnight Club: Street Racing на PlayStation 2, команда разработчиков Angel Studios[пр. 1] решила создать сиквел, включив в него различные нововведения, например онлайн-игру. Midnight Club II получила положительные отзывы от игровой прессы. Большинство журналистов хвалили проработанные города, разнообразие режимов и многопользовательскую онлайн-игру, но подвергали критике уровень сложности и графику[⇨]. В 2005 году было издано продолжение — Midnight Club 3: DUB Edition[⇨].";
+        String line  = "Midnight Club II (с англ.-  «Полночный клуб 2») — видеоигра в жанре аркадных авто и мотогонок, разработанная студией Rockstar San Diego и изданная компанией Rockstar Games для игровых приставок PlayStation 2 и Xbox и для персональных компьютеров под управлением Windows в 2003 году. За локализацию гоночной аркады в России была ответственна компания «1С-СофтКлаб». 4 января 2008 года Midnight Club II была переиздана в сервисе Steam. В марте 2013 года игра стала доступна в разделе «PS2 Classics» сервиса PlayStation Network для консоли PlayStation 3. Midnight Club II является продолжением Midnight Club: Street Racing и второй игрой серии Midnight Club[⇨]." +
+
+        "Как и в предшественнике, в Midnight Club II присутствуют два режима — «Аркада», в котором игрок может свободно участвовать в гонках в одиночном или многопользовательском вариантах, предварительно настроив условия соревнований, и «Карьера», в котором представлена сюжетная линия, где главный герой участвует в нелегальных заездах, стремясь получить статус лучшего уличного гонщика. Действие игры происходит в трёх реальных городах мира — Лос-Анджелесе, Париже и Токио, по которым предоставлена свобода передвижения. По мере прохождения игры становятся доступными новые автомобили и мотоциклы, достающиеся игроку от поверженных соперников. Для каждого транспортного средства характерны его особые способности, помогающие игроку в прохождении гонок[⇨]." +
+
+        "Midnight Club II была анонсирована в 2002 году. Благодаря успеху Midnight Club: Street Racing на PlayStation 2, команда разработчиков Angel Studios[пр. 1] решила создать сиквел, включив в него различные нововведения, например онлайн-игру. Midnight Club II получила положительные отзывы от игровой прессы. Большинство журналистов хвалили проработанные города, разнообразие режимов и многопользовательскую онлайн-игру, но подвергали критике уровень сложности и графику[⇨]. В 2005 году было издано продолжение — Midnight Club 3: клуб едищион. ан";
 
 //String line = "Midnight Club II (с англ.-  «Полночный клуб 2») — видеоигра в жанре аркадных авто и мотогонок, разработанная студией Rockstar San Diego и изданная компанией Rockstar Games";
 //  p.add(line);
 //        p.add("\n");
         System.out.println("max " + maxSize);
         // System.out.println("Строка" + font.getWidth(line,sizefont));
-        System.out.println("one " + font.getWidth("мотогонок, разработанная студией Rockstar", sizefont));
+        System.out.println("one " + font.getWidth("для персональных компьютеров под управлением", sizefont));
         Words words = new Words();
         String space = " ";
         float resulttest = 0;
@@ -111,19 +114,22 @@ public class test {
         String lastS = "";
         Text t2 = new Text("");
         Text t3 = new Text("");
-
+ int n = 0;
         List<String> Alist = words.Word_WithoutSpaceforMainPdf(line);
         float result = 0;
        WidthStroke((ArrayList<String>) Alist);
         //System.out.println(maxSize);
         int count = 0;
         int listWidthCount = 0;
+        boolean lastString= false;
         float Fspace = font.getWidth(" ",sizefont);
+        System.out.println("ListWidth = " + ListWidth);
+        System.out.println(ListRandFont);
+
         for (int i = 0; i < Alist.size(); i++) {
             Text t = new Text("");
 
             if (!parag) {
-                System.out.println("ListWidth = " + ListWidth);
                 count++;
                 //last += p.getChildren().size();
                 p = new Paragraph();
@@ -141,26 +147,30 @@ public class test {
                 // parag = true;
 
             }
-            last++;
+
             // parag = true;
 
             if (parag) {
                 for (int j = 0; j < Alist.get(i).length(); j++) {
-//                        int rand = 1 + (int) (Math.random() *3);
-//                        if(rand==1) {
-//                            t = new Text(String.valueOf(Alist.get(i).charAt(j)));
-//                            t.setFont(font1);
-//                            result += font1.getWidth(Alist.get(i).charAt(j), sizefont);
-//                        }
-
-
-//                        if(rand==2) {
-//                            t = new Text(String.valueOf(Alist.get(i).charAt(j)));
-//                            t.setFont(font2);
-//                            result += font2.getWidth(Alist.get(i).charAt(j), sizefont);
-//                        }
-//                        if(rand==3) {
+                       int rand = 1 + (int) (Math.random() *3);
                     t = new Text(String.valueOf(Alist.get(i).charAt(j)));
+                    //System.out.println(n + " " +ListRandFont.get(n));
+                        if(ListRandFont.get(n)==1) {
+                            t.setFont(font1);
+                            result += font1.getWidth(Alist.get(i).charAt(j), sizefont);
+                        }
+
+
+                        if(ListRandFont.get(n)==2) {
+                            t.setFont(font2);
+                            result += font2.getWidth(Alist.get(i).charAt(j), sizefont);
+                        }
+                        if(ListRandFont.get(n)==3) {
+                            t.setFont(font);
+                            result += font.getWidth(Alist.get(i).charAt(j), sizefont);
+                       }
+                       n++;
+
 //add space
                     try {
 
@@ -175,12 +185,16 @@ public class test {
                             }
                         }
                     }catch (IndexOutOfBoundsException ex){}
-                    t.setFont(font);
-                    result+= font.getWidth(Alist.get(i).charAt(j), sizefont);
+                    //t.setFont(font);
+                   // result+= font.getWidth(Alist.get(i).charAt(j), sizefont);
                     // }
                     p.add(t);
 
                 }
+            }
+            if(!lastString)
+            {
+                last++;
             }
             parag = true;
 
@@ -210,13 +224,14 @@ public class test {
 
 
                     t2 = new Text(StringRes.get(1));
-                    last--;
                     resultMargin = hyphenator.resultMargin;
                     Fspace = font.getWidth(" ",sizefont);
                     listWidthCount++;
 
 
                 }
+
+
                 a = StringRes.get(1);
                 // System.out.println("aaaa " + a );
             } catch (IndexOutOfBoundsException ex) {
@@ -227,24 +242,25 @@ public class test {
 
 
             //System.out.println("!!!!!"+resulttest);
+
             if (!parag) {
                 p.add(t);
                 doc.add(p);
                 //  doc.add(new Paragraph("\n"));
                 lastS = a;
-
+                lastString = false;
             }
-            lastI = i;
+
         }
 
         System.out.println("last " + last);
-        System.out.println("lastI " + lastI);
-        int resultLast = lastI - last;
+       System.out.println("Size " + Alist.size());
+       int resultLast =  Alist.size() - last;
 
         if (last < Alist.size()) {
 
             Paragraph p1 = new Paragraph();
-            System.out.println("+++ " + lastS);
+            System.out.println("+++++++" + lastS);
             p1.add(lastS);
             for (int i = 0; i < resultLast; i++) {
                 try {
@@ -255,8 +271,14 @@ public class test {
 
                 }
             }
-            //doc.add(p1);
+           // doc.add(p1);
 
+        }
+        System.out.println(ListRandFont.size());
+        System.out.println(n);
+        for(int k =0; k<ListRandFont.size();k++)
+        {
+           // System.out.println( k +" "+ListRandFont.get(k));
         }
         doc.close();
 
@@ -292,7 +314,23 @@ public class test {
             if (parag) {
                 for (int j = 0; j < Alist.get(i).length(); j++) {
 
-                 result+= font.getWidth(Alist.get(i).charAt(j), sizefont);
+                    int rand = 1 + (int) (Math.random() *3);
+                    if(rand==1) {
+
+                        result += font1.getWidth(Alist.get(i).charAt(j), sizefont);
+                    }
+
+
+                    if(rand==2) {
+
+                        result += font2.getWidth(Alist.get(i).charAt(j), sizefont);
+                    }
+                    if(rand==3) {
+
+                        result += font.getWidth(Alist.get(i).charAt(j), sizefont);
+                    }
+                    ListRandFont.add(rand);
+
 
 
 
@@ -339,7 +377,6 @@ public class test {
 
 
         // System.out.println("aaaaa" + a);
-
 
     }
 }
