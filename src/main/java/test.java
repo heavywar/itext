@@ -40,6 +40,7 @@ public class test {
    static int sizefont = 16;
    static  ArrayList<Float> ListWidth = new ArrayList<>();
    static ArrayList<Integer> ListRandFont = new ArrayList<>();
+    static int countLAst =0;
 
 
     public static void main(String[] args) throws Exception {
@@ -121,11 +122,11 @@ public class test {
         //System.out.println(maxSize);
         int count = 0;
         int listWidthCount = 0;
-        boolean lastString= false;
+        boolean lastString= true;
         float Fspace = font.getWidth(" ",sizefont);
         System.out.println("ListWidth = " + ListWidth);
         System.out.println(ListRandFont);
-
+        boolean paragCount =true;
         for (int i = 0; i < Alist.size(); i++) {
             Text t = new Text("");
 
@@ -145,10 +146,19 @@ public class test {
                 }
                 p.add(t2);
                 // parag = true;
+                lastString = false;
+                System.out.println("listWidthCount"+ listWidthCount);
+                System.out.println("countLAst" + countLAst);
+               // int listWidthCount1 = listWidthCount
+                if(listWidthCount==countLAst)
+                {
+                    System.out.println("!!!+++");
+                    //parag = false;
+                    //paragCount =false;
+                }
 
             }
 
-            // parag = true;
 
             if (parag) {
                 for (int j = 0; j < Alist.get(i).length(); j++) {
@@ -170,10 +180,8 @@ public class test {
                             result += font.getWidth(Alist.get(i).charAt(j), sizefont);
                        }
                        n++;
-
 //add space
                     try {
-
                         float F = ListWidth.get(listWidthCount)+Fspace;
                         if (F < maxSize) {
                             if (Alist.get(i).charAt(j) == ' ') {
@@ -185,33 +193,19 @@ public class test {
                             }
                         }
                     }catch (IndexOutOfBoundsException ex){}
-                    //t.setFont(font);
-                   // result+= font.getWidth(Alist.get(i).charAt(j), sizefont);
-                    // }
                     p.add(t);
 
                 }
             }
-            if(!lastString)
-            {
-                last++;
-            }
             parag = true;
-
-
-            // t = new Text(Alist.get(i));
-
             System.out.println("слово " + Alist.get(i) + "width  =" + result);
-            // System.out.println(result);
             try {
 
 
                 if (result + font.getWidth(Alist.get(i + 1), sizefont) > maxSize) {
 
                     parag = false;
-                    //   result = result-font.getWidth(Alist.get(i ;
                     System.out.println(" resultMain" + result);
-                    // String string = hyphenator.hyphenateWord(Alist.get(i));
 
                     StringRes = hyphenator.widtString(result, maxSize, font, Alist.get(i + 1));
                     System.out.println("buffer " + StringRes);
@@ -219,12 +213,10 @@ public class test {
                     System.out.println("БУквы после дифиса" + hyphenator.minusResult);
                     t = new Text(StringRes.get(0));
                     result = 0 + letter_after_hyph;
-                    // p = new Paragraph();
 
 
 
                     t2 = new Text(StringRes.get(1));
-                    resultMargin = hyphenator.resultMargin;
                     Fspace = font.getWidth(" ",sizefont);
                     listWidthCount++;
 
@@ -232,73 +224,37 @@ public class test {
                 }
 
 
-                a = StringRes.get(1);
-                // System.out.println("aaaa " + a );
+
             } catch (IndexOutOfBoundsException ex) {
 
             }
 
-            // System.out.println("aaaaa" + a);
 
 
-            //System.out.println("!!!!!"+resulttest);
+               if(Alist.size()-1 == i) { //Нужен чтобы доавить последнюю стоку.
+                   System.out.println("!!!FALSE+");
+                   paragCount = false;
+               }
 
-            if (!parag) {
+            if (!parag ||!paragCount) {
                 p.add(t);
                 doc.add(p);
-                //  doc.add(new Paragraph("\n"));
-                lastS = a;
-                lastString = false;
+
             }
 
         }
 
         System.out.println("last " + last);
        System.out.println("Size " + Alist.size());
-       int resultLast =  Alist.size() - last;
 
-        if (last < Alist.size()) {
 
-            Paragraph p1 = new Paragraph();
-            System.out.println("+++++++" + lastS);
-            p1.add(lastS);
-            for (int i = 0; i < resultLast; i++) {
-                try {
-                    last++;
-                    p1.add(Alist.get(last));
 
-                } catch (IndexOutOfBoundsException ex) {
-
-                }
-            }
-           // doc.add(p1);
-
-        }
-        System.out.println(ListRandFont.size());
-        System.out.println(n);
-        for(int k =0; k<ListRandFont.size();k++)
-        {
-           // System.out.println( k +" "+ListRandFont.get(k));
-        }
         doc.close();
 
 
     }
 
-    public static ArrayList<String> ArrayList(String string) {
-        ArrayList<String> arrayList = new ArrayList<>();
-        for (String retval : string.split("-", 0)) {
 
-            if (retval.length() != 0 && !retval.equals(" ")) {
-                arrayList.add(retval + " ");
-                //arrayList.add(" ");
-                //  arrayList.add(" ");
-            }
-//
-
-        }
-        return arrayList;
-    }
 
     public static void WidthStroke(ArrayList<String> Alist) {
         Text t = new Text("");
@@ -357,12 +313,13 @@ public class test {
                     result = 0 + letter_after_hyph;
                     ListWidth.add(f);
                     // p = new Paragraph();
-
+                     countLAst++;
                     parag = false;
 
 
 
                 }
+
                 // System.out.println("aaaa " + a );
             } catch (IndexOutOfBoundsException ex) {
 

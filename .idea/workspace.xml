@@ -5,7 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fonts/tutorial/TXTtest122.pdf" afterPath="$PROJECT_DIR$/fonts/tutorial/TXTtest122.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test.java" afterPath="$PROJECT_DIR$/src/main/java/test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/testHyph.java" afterPath="$PROJECT_DIR$/src/main/java/testHyph.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -35,12 +34,12 @@
       <file leaf-file-name="test.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="131" column="25" lean-forward="true" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
+            <state relative-caret-position="-2755">
+              <caret line="161" column="0" lean-forward="true" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1540392878768" expanded="true" signature="3407:4866" ph="..." />
-                <marker date="1540392878768" expanded="true" signature="8125:8552" ph="..." />
+                <marker date="1540397499774" expanded="true" signature="3436:4895" ph="..." />
+                <marker date="1540397499774" expanded="true" signature="8589:9016" ph="..." />
               </folding>
             </state>
           </provider>
@@ -90,7 +89,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>свободно</find>
       <find>Аркада</find>
       <find>342.01602</find>
       <find>мо-то-</find>
@@ -120,6 +118,7 @@
       <find>Midnight Club II является продолжением</find>
       <find>last</find>
       <find>Midnight</find>
+      <find>!!!FALSE+</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -655,7 +654,7 @@
       <workItem from="1540232916557" duration="13555000" />
       <workItem from="1540291564318" duration="21768000" />
       <workItem from="1540324445379" duration="4929000" />
-      <workItem from="1540381139367" duration="11670000" />
+      <workItem from="1540381139367" duration="15042000" />
     </task>
     <task id="LOCAL-00001" summary="itext project">
       <created>1536853682879</created>
@@ -734,15 +733,21 @@
       <option name="project" value="LOCAL" />
       <updated>1540328496081</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Переносы testv4">
+      <created>1540394147470</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1540394147470</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="547541000" />
+    <option name="totallyTimeSpent" value="550913000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -757,7 +762,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21925566" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21925566" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -819,7 +824,8 @@
     <MESSAGE value="Без лигитур" />
     <MESSAGE value="Переносы test2" />
     <MESSAGE value="Переносы testv3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Переносы testv3" />
+    <MESSAGE value="Переносы testv4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Переносы testv4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -833,7 +839,7 @@
         <line-breakpoint enabled="true" type="java-line">
           <condition expression="Alist.get(i) ==&quot;мотогонок&quot;" language="JAVA" />
           <url>file://$PROJECT_DIR$/src/main/java/test.java</url>
-          <line>203</line>
+          <line>200</line>
           <properties />
           <option name="timeStamp" value="91" />
         </line-breakpoint>
@@ -876,8 +882,8 @@
           <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1540392878768" expanded="true" signature="3407:4866" ph="..." />
-            <marker date="1540392878768" expanded="true" signature="8125:8552" ph="..." />
+            <marker date="1540397499774" expanded="true" signature="3436:4895" ph="..." />
+            <marker date="1540397499774" expanded="true" signature="8589:9016" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1191,6 +1197,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-408">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1198,14 +1205,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
           <caret line="432" column="0" lean-forward="false" selection-start-line="432" selection-start-column="0" selection-end-line="432" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fonts/tutorial/itextkey1538302072407_0.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1218,6 +1217,14 @@
             <element signature="imports" expanded="true" />
             <marker date="1540385841332" expanded="true" signature="2785:3193" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fonts/tutorial/itextkey1538302072407_0.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1234,12 +1241,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="131" column="25" lean-forward="true" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
+        <state relative-caret-position="-2755">
+          <caret line="161" column="0" lean-forward="true" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1540392878768" expanded="true" signature="3407:4866" ph="..." />
-            <marker date="1540392878768" expanded="true" signature="8125:8552" ph="..." />
+            <marker date="1540397499774" expanded="true" signature="3436:4895" ph="..." />
+            <marker date="1540397499774" expanded="true" signature="8589:9016" ph="..." />
           </folding>
         </state>
       </provider>
