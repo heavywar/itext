@@ -1,5 +1,3 @@
-package main;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -166,7 +164,7 @@ return false;
 
 
     }
-    public static boolean isSpecifiedLetterLowerfirst(char Char) {
+    public static boolean isSpecifiedLetterLower(char Char) {
         char[] Legature = {'г', 'ж', 'з', 'ч', 'х'};
         for (int i = 0; i < Legature.length; i++) {
             if (Char == Legature[i])
@@ -175,25 +173,6 @@ return false;
 
         }
         return false;
-
-    }
-    public  boolean isSpecifiedLetterLowerLast(char Char) {
-        char[] Legature = {'б', 'в', 'о', 'ю', 'ь','ф'};
-        for (int i = 0; i < Legature.length; i++) {
-            if (Char == Legature[i])
-                return true;
-
-
-        }
-        return false;
-
-    }
-
-    public static boolean isSpecifiedLetterLowerLastSpace(String str,int Int) {
-        if(str.charAt(Int +1) == ' ')
-            return true;
-
-                return false;
 
     }
 

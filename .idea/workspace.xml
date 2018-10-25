@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/test.java" line="207" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="2b1208ea-1e27-456c-8782-f127276a670d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Words.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fonts/tutorial/TXTtest122.pdf" afterPath="$PROJECT_DIR$/fonts/tutorial/TXTtest122.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Hyphenator.java" afterPath="$PROJECT_DIR$/src/main/java/Hyphenator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/main/MainPdf.java" afterPath="$PROJECT_DIR$/src/main/java/main/MainPdf.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/main/Words.java" afterPath="$PROJECT_DIR$/src/main/java/main/Words.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test.java" afterPath="$PROJECT_DIR$/src/main/java/test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/testHyph.java" afterPath="$PROJECT_DIR$/src/main/java/testHyph.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -19,61 +26,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Hyphenator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Hyphenator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Hyphenator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="282" column="46" lean-forward="false" selection-start-line="282" selection-start-column="46" selection-end-line="282" selection-end-column="46" />
+            <state relative-caret-position="2826">
+              <caret line="218" column="61" lean-forward="false" selection-start-line="218" selection-start-column="61" selection-end-line="218" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1540398293048" expanded="true" signature="2678:2791" ph="..." />
+                <marker date="1540472510696" expanded="true" signature="2678:2791" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="223" column="31" lean-forward="false" selection-start-line="223" selection-start-column="31" selection-end-line="223" selection-end-column="31" />
+            <state relative-caret-position="316">
+              <caret line="154" column="31" lean-forward="false" selection-start-line="154" selection-start-column="24" selection-end-line="154" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1540398238161" expanded="true" signature="3395:4854" ph="..." />
-                <marker date="1540398238161" expanded="true" signature="7378:7804" ph="..." />
+                <marker date="1540472958180" expanded="true" signature="4047:11837" ph="..." />
+                <marker date="1540472958180" expanded="true" signature="19025:19325" ph="..." />
+                <marker date="1540472958180" expanded="true" signature="19025:19330" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="itextkey1538302072407_0.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fonts/tutorial/itextkey1538302072407_0.xml">
+      <file leaf-file-name="MainPdf.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/main/MainPdf.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testHyph.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/testHyph.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="72" column="62" lean-forward="false" selection-start-line="72" selection-start-column="62" selection-end-line="72" selection-end-column="62" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1540385841332" expanded="true" signature="2785:3193" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArrayList.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ArrayList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="432" column="0" lean-forward="false" selection-start-line="432" selection-start-column="0" selection-end-line="432" selection-end-column="0" />
+            <state relative-caret-position="147">
+              <caret line="586" column="18" lean-forward="false" selection-start-line="586" selection-start-column="18" selection-end-line="586" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -90,19 +75,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>мо-то-</find>
-      <find>Rockstar</find>
-      <find>мо-то-го-нок,</find>
-      <find>++слово1</find>
-      <find>339.376</find>
-      <find>студией</find>
-      <find>города,</find>
-      <find>разнообразие</find>
-      <find>разнообразие режимов</find>
-      <find>result</find>
-      <find>идеоигра</find>
-      <find>Mat</find>
-      <find>329.44003</find>
       <find>336.67206</find>
       <find>2»)</find>
       <find>ListWidth</find>
@@ -112,14 +84,27 @@
       <find>San</find>
       <find>авто</find>
       <find>мо-то-го-нок</find>
-      <find>San</find>
       <find>управлением</find>
       <find>Midnight Club II является продолжением</find>
       <find>last</find>
       <find>Midnight</find>
       <find>!!!FALSE+</find>
-      <find>count+++</find>
       <find>count++;</find>
+      <find>try</find>
+      <find>system</find>
+      <find>5</find>
+      <find>syste</find>
+      <find>аб3</find>
+      <find>Вашингтона.</find>
+      <find>иное</find>
+      <find>иное</find>
+      <find>индивидуально-определённых</find>
+      <find>(профессиональные</find>
+      <find>lang.IndexOutOfBoundsException</find>
+      <find>IndexOutOfBoundsException</find>
+      <find>setFir</find>
+      <find>count+++</find>
+      <find>isEmpty</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -175,19 +160,19 @@
         <option value="$PROJECT_DIR$/src/main/java/texta5.java" />
         <option value="$PROJECT_DIR$/src/main/java/testTxt.java" />
         <option value="$PROJECT_DIR$/src/main/java/mirrorMargin.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Words.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/ReturnLine.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/ReturnLineToLine.java" />
         <option value="$PROJECT_DIR$/src/main/java/TestItest.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/testArray.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/PdfToTxt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/main/MainPdf.java" />
         <option value="$PROJECT_DIR$/src/main/java/company/Hyphenator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/main/Words.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/mirrorMargin.java" />
         <option value="$PROJECT_DIR$/src/main/java/testHyph.java" />
-        <option value="$PROJECT_DIR$/src/main/java/test.java" />
+        <option value="$PROJECT_DIR$/src/main/java/main/MainPdf.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Words.java" />
+        <option value="$PROJECT_DIR$/src/main/java/main/Words.java" />
         <option value="$PROJECT_DIR$/src/main/java/Hyphenator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/test.java" />
       </list>
     </option>
   </component>
@@ -244,9 +229,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -286,6 +270,14 @@
             <path>
               <item name="itext" type="b2602c69:ProjectViewProjectNode" />
               <item name="itext" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="itext" type="b2602c69:ProjectViewProjectNode" />
+              <item name="itext" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -298,7 +290,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -325,9 +318,10 @@
       <recent name="D:\itext\src\main\java" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+      <recent name="main" />
       <recent name="company" />
       <recent name="convert" />
-      <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\java project\itext\src\main\java\test" />
@@ -544,10 +538,10 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Application.test" />
-        <item index="1" class="java.lang.String" itemvalue="Application.testHyph" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Hyphenator (1)" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Hyphenator" />
-        <item index="4" class="java.lang.String" itemvalue="Application.MainPdf" />
+        <item index="1" class="java.lang.String" itemvalue="Application.MainPdf" />
+        <item index="2" class="java.lang.String" itemvalue="Application.testHyph" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Hyphenator (1)" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Hyphenator" />
       </list>
     </recent_temporary>
   </component>
@@ -655,7 +649,10 @@
       <workItem from="1540232916557" duration="13555000" />
       <workItem from="1540291564318" duration="21768000" />
       <workItem from="1540324445379" duration="4929000" />
-      <workItem from="1540381139367" duration="15832000" />
+      <workItem from="1540381139367" duration="22969000" />
+      <workItem from="1540408740842" duration="1592000" />
+      <workItem from="1540413640259" duration="6416000" />
+      <workItem from="1540462222521" duration="10586000" />
     </task>
     <task id="LOCAL-00001" summary="itext project">
       <created>1536853682879</created>
@@ -748,11 +745,18 @@
       <option name="project" value="LOCAL" />
       <updated>1540397524307</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Переносы testv6 full!">
+      <created>1540398320412</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1540398320412</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="551703000" />
+    <option name="totallyTimeSpent" value="577434000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
@@ -766,11 +770,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2687428" sideWeight="0.5914239" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.017799353" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.366782" sideWeight="0.40857604" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40484428" sideWeight="0.40857604" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21925566" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2289644" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -807,11 +811,11 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39100346" sideWeight="0.40857604" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39215687" sideWeight="0.40857604" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21278317" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2289644" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -834,38 +838,29 @@
     <MESSAGE value="Переносы testv3" />
     <MESSAGE value="Переносы testv4" />
     <MESSAGE value="Переносы testv5" />
-    <option name="LAST_COMMIT_MESSAGE" value="Переносы testv5" />
+    <MESSAGE value="Переносы testv6 full!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Переносы testv6 full!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/main/MainPdf.java</url>
-          <line>644</line>
+          <line>643</line>
           <properties />
           <option name="timeStamp" value="50" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/Hyphenator.java</url>
-          <line>84</line>
-          <properties class="Hyphenator" method="widtString">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/Hyphenator.java</url>
-          <line>175</line>
-          <properties class="Hyphenator" method="widtCount">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="89" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/test.java</url>
+          <line>276</line>
+          <properties />
+          <option name="timeStamp" value="102" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="92" />
+      <option name="time" value="103" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -878,25 +873,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2023">
-          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1540398238161" expanded="true" signature="3395:4854" ph="..." />
-            <marker date="1540398238161" expanded="true" signature="7378:7804" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/main/PdfToTxt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="82" lean-forward="false" selection-start-line="47" selection-start-column="66" selection-end-line="47" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/main/Words.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
@@ -1001,7 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1033,14 +1008,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="168" column="32" lean-forward="false" selection-start-line="168" selection-start-column="25" selection-end-line="168" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/main/Words.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="76" column="26" lean-forward="false" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1102,21 +1069,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/main/PdfToTxt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/itextpdf/layout/7.1.3/layout-7.1.3.jar!/com/itextpdf/layout/ElementPropertyContainer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="30" column="11" lean-forward="false" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/itextpdf/layout/7.1.3/layout-7.1.3.jar!/com/itextpdf/layout/element/AbstractElement.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1131,14 +1083,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/main/MainPdf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6747">
-          <caret line="219" column="73" lean-forward="false" selection-start-line="219" selection-start-column="44" selection-end-line="219" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/other IDE/GlassFish5/glassfish5/test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1150,13 +1094,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
           <caret line="48" column="19" lean-forward="false" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/itextpdf/kernel/7.1.3/kernel-7.1.3.jar!/com/itextpdf/kernel/font/PdfFont.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1199,26 +1136,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-408">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="432" column="0" lean-forward="false" selection-start-line="432" selection-start-column="0" selection-end-line="432" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/testHyph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="72" column="62" lean-forward="false" selection-start-line="72" selection-start-column="62" selection-end-line="72" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1540385841332" expanded="true" signature="2785:3193" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1230,25 +1147,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/test.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/testHyph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="223" column="31" lean-forward="false" selection-start-line="223" selection-start-column="31" selection-end-line="223" selection-end-column="31" />
+        <state relative-caret-position="340">
+          <caret line="70" column="40" lean-forward="true" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1540398238161" expanded="true" signature="3395:4854" ph="..." />
-            <marker date="1540398238161" expanded="true" signature="7378:7804" ph="..." />
+            <element signature="imports" expanded="false" />
+            <marker date="1540398545146" expanded="true" signature="2785:3193" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Words.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/itextpdf/layout/7.1.3/layout-7.1.3.jar!/com/itextpdf/layout/ElementPropertyContainer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+          <folding>
+            <element signature="e#1246#1247#0" expanded="true" />
+            <element signature="e#1298#1299#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/itextpdf/kernel/7.1.3/kernel-7.1.3.jar!/com/itextpdf/kernel/font/PdfFont.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+          <folding>
+            <element signature="e#3266#3267#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/itextpdf/layout/7.1.3/layout-7.1.3.jar!/com/itextpdf/layout/element/Paragraph.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="432" column="0" lean-forward="false" selection-start-line="432" selection-start-column="0" selection-end-line="432" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/main/Words.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1510">
+          <caret line="169" column="0" lean-forward="false" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/main/MainPdf.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="586" column="18" lean-forward="false" selection-start-line="586" selection-start-column="18" selection-end-line="586" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/main/PdfToTxt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="247" column="13" lean-forward="true" selection-start-line="240" selection-start-column="11" selection-end-line="247" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Hyphenator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="282" column="46" lean-forward="false" selection-start-line="282" selection-start-column="46" selection-end-line="282" selection-end-column="46" />
+        <state relative-caret-position="2826">
+          <caret line="218" column="61" lean-forward="false" selection-start-line="218" selection-start-column="61" selection-end-line="218" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1540398293048" expanded="true" signature="2678:2791" ph="..." />
+            <marker date="1540472510696" expanded="true" signature="2678:2791" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="154" column="31" lean-forward="false" selection-start-line="154" selection-start-column="24" selection-end-line="154" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1540472958180" expanded="true" signature="4047:11837" ph="..." />
+            <marker date="1540472958180" expanded="true" signature="19025:19325" ph="..." />
+            <marker date="1540472958180" expanded="true" signature="19025:19330" ph="..." />
           </folding>
         </state>
       </provider>

@@ -89,17 +89,17 @@ public class Hyphenator {
         minusResult = 0;
         ArrayList <String> StringRes = new ArrayList<>();
         StringBuffer stringBuffer = new StringBuffer();
-        float space = font.getWidth(" ",16);
-        float hyphen =  font.getWidth("-",16);
+        float space = font.getWidth(" ",test.sizefont);
+        float hyphen =  font.getWidth("-",test.sizefont);
         String s = hyphenateWord(str);
        ArrayList<String> ar = ArrayList(s);
          int n = 0;
          boolean Break = true;
         boolean Break22 = true;
-        if(result +font.getWidth(str,16)-space<maxSize )
+        if(result +font.getWidth(str,test.sizefont)-space<maxSize )
         {
             minusResult = 0;
-            resultMargin = result+font.getWidth(str,16)-space;
+            resultMargin = result+font.getWidth(str,test.sizefont)-space;
             StringRes.add(str);
             StringRes.add("");
             System.out.println("break222");
@@ -111,9 +111,9 @@ public class Hyphenator {
          boolean exs = true;
 
         result+=hyphen;
-        if(result + font.getWidth(ar.get(0),16)>maxSize)
+        if(result + font.getWidth(ar.get(0),test.sizefont)>maxSize)
         {
-            minusResult = font.getWidth(str,16);
+            minusResult = font.getWidth(str,test.sizefont);
             resultMargin = result-hyphen-space;
             System.out.println("break");
             System.out.println("!!!resultMargin = " + resultMargin);
@@ -125,7 +125,7 @@ public class Hyphenator {
 
        for(int i = 0; i<ar.size();i++)
        {
-           float res = font.getWidth(ar.get(i),16);
+           float res = font.getWidth(ar.get(i),test.sizefont);
            System.out.println("часть - " + ar.get(i) + " Width части - "+ res + " width Result - " + result+res);
 
 
@@ -168,7 +168,7 @@ public class Hyphenator {
             //resultAp = str.substring(0, n) + "-" + str.substring(n);
         }
 
-        minusResult = font.getWidth(hyphennext,16);
+        minusResult = font.getWidth(hyphennext,test.sizefont);
 
         return StringRes;
     }
@@ -180,17 +180,17 @@ public class Hyphenator {
         minusResult = 0;
         ArrayList <String> StringRes = new ArrayList<>();
         StringBuffer stringBuffer = new StringBuffer();
-        float space = font.getWidth(" ",16);
-        float hyphen =  font.getWidth("-",16);
+        float space = font.getWidth(" ",test.sizefont);
+        float hyphen =  font.getWidth("-",test.sizefont);
         String s = hyphenateWord(str);
         ArrayList<String> ar = ArrayList(s);
         int n = 0;
         boolean Break = true;
         boolean Break22 = true;
-        if(result +font.getWidth(str,16)-space<maxSize )
+        if(result +font.getWidth(str,test.sizefont)-space<maxSize )
         {
             minusResult = 0;
-            resultMargin = result+font.getWidth(str,16)-space;
+            resultMargin = result+font.getWidth(str,test.sizefont)-space;
             StringRes.add(str);
             StringRes.add("");
             System.out.println("break222");
@@ -202,9 +202,9 @@ public class Hyphenator {
         boolean exs = true;
 
         result+=hyphen;
-        if(result + font.getWidth(ar.get(0),16)>maxSize)
+        if(result + font.getWidth(ar.get(0),test.sizefont)>maxSize)
         {
-            minusResult = font.getWidth(str,16);
+            minusResult = font.getWidth(str,test.sizefont);
             resultMargin = result-hyphen-space;
             System.out.println("break");
             System.out.println("+++resultMargin = " + resultMargin);
@@ -216,7 +216,7 @@ public class Hyphenator {
 
         for(int i = 0; i<ar.size();i++)
         {
-            float res = font.getWidth(ar.get(i),16);
+            float res = font.getWidth(ar.get(i),test.sizefont);
             System.out.println("часть - " + ar.get(i) + " Width части - "+ res + " width Result - " + result+res);
 
 
@@ -260,7 +260,7 @@ public class Hyphenator {
             //resultAp = str.substring(0, n) + "-" + str.substring(n);
         }
 
-        minusResult = font.getWidth(hyphennext,16);
+        minusResult = font.getWidth(hyphennext,test.sizefont);
 
         return resultMargin;
 

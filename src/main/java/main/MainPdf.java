@@ -254,7 +254,6 @@ public class MainPdf {
                         for(int i = 0; i< a1.length();i++)
                         {
 
-
                             Text t = new Text("");
 
                             try {
@@ -300,7 +299,7 @@ public class MainPdf {
 
                             int random_number2 = 1 + (int) (Math.random() *4);
 
-                            if (i == 0 && word.isSpecifiedLetterLower(a1.charAt(i))) {
+                            if (i == 0 && word.isSpecifiedLetterLowerfirst(a1.charAt(i))) {
                                 t = new Text(String.valueOf(a1.charAt(i))).setFont(fontSpec);
                             }
                             else {
@@ -436,7 +435,7 @@ public class MainPdf {
                             for(int i =0; i<a1.length();i++) {
                                 int random_number2 = 1 + (int) (Math.random() *4);
                                 Text t = new Text("");
-                                if (i == 0 && word.isSpecifiedLetterLower(a1.charAt(i))) {
+                                if (i == 0 && word.isSpecifiedLetterLowerfirst(a1.charAt(i))) {
                                     t = new Text(String.valueOf(a1.charAt(i))).setFont(fontSpec);
                                 }
                                 else {
@@ -453,7 +452,7 @@ public class MainPdf {
 
                                     if(i>2 && i<=4+NumberofLetters) {//Со второй буквы по 4(+case) буквы вверх
                                     nplus += 1.0;
-                                   // t2.setBackgroundColor(greenColor);
+                                    t.setBackgroundColor(greenColor);
                                     t.setTextRise(nplus - nminus);
 
                                 }
@@ -462,7 +461,7 @@ public class MainPdf {
                                // с 5(+case) по 7(2х case, потому что в начале ничего не прибавляется (i>2)) ,буквы винз
                                 if(i>=5+NumberofLetters && i<7+NumberofLetters+NumberofLetters ) {
                                     nminus += 1.0;
-                                   // t2.setBackgroundColor(redColor);
+                                   t.setBackgroundColor(redColor);
                                     t.setTextRise(nplus - nminus);
 
 
@@ -547,7 +546,7 @@ public class MainPdf {
                             //t.setText(String.valueOf(a1.charAt(i)));
                             int random_number2 = 1 + (int) (Math.random() *4);
 
-                            if (i == 0 && word.isSpecifiedLetterLower( a1.charAt(i)))
+                            if (i == 0 && word.isSpecifiedLetterLowerfirst( a1.charAt(i)))
                                 t= new Text(String.valueOf(a1.charAt(i))).setFont(fontSpec);
                                 else {
                                     if(random_number2==1)

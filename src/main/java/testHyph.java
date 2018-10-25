@@ -75,20 +75,18 @@ public class testHyph {
                         // .setKerningFeature(true)
 
                 ));
-        int a1[][] = new int[5][];
-        ArrayList<Integer> arl = new ArrayList<>();
-        for(int i =0;i<5;i++) {
-            int rand = 1 + (int) (Math.random() *3);
-            arl.add( i,rand);
-        }
+         Paragraph p = testHyph.p("fff");
+         doc.add(p);
+         doc.close();
 
 
-            System.out.println(arl);
+    }
 
-
-
-
-
+    public  static Paragraph p (String a)
+    {
+        Paragraph p = new Paragraph(a);
+        p.setBold();
+        return p;
     }
   }
 
