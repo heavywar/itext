@@ -1,3 +1,5 @@
+//1)Печать четныый(дырки<-) 2)печать четных
+//Если листов не четное количетсво то последний , для нечетных пустой,самый первый для печати(например листов 91)
 
 
 import com.itextpdf.io.font.PdfEncodings;
@@ -8,6 +10,7 @@ import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
@@ -15,6 +18,7 @@ import com.itextpdf.layout.property.Leading;
 import com.itextpdf.layout.property.Property;
 import com.itextpdf.licensekey.LicenseKey;
 import main.Words;
+import main.mirrorMargin;
 
 
 import java.io.BufferedReader;
@@ -27,6 +31,7 @@ public class test {
     public static final String DEST = "./fonts/tutorial/TXTtest122.pdf";
     public static final String DEST1 = "./fonts/tutorial/TXTtest22.pdf";
     public static final String DEST2 = "D:\\1.txt";
+    public static final String DEST3 = "./fonts/tutorial/Margin++.pdf";
 
     // public static final String FONT1 = "D:\\fontGZ....ttf";
     // public static final String FONT3 = "D:\\newFont2т.ttf";
@@ -50,11 +55,14 @@ public class test {
     static  boolean title = true;
 
 
+
     public static void main(String[] args) throws Exception {
         LicenseKey.loadLicenseFile("./fonts/tutorial/itextkey1538302072407_0.xml");
         File file = new File(DEST);
         file.getParentFile().mkdirs();
         new test().manipulatePdf(DEST);
+        new mirrorMargin().createPdf(DEST3);
+
     }
 
     protected void manipulatePdf(String dest) throws Exception {
@@ -74,7 +82,7 @@ public class test {
         PdfDocument pdfDoc = new PdfDocument(new PdfWriter(dest));
         PageSize ps = PageSize.A5;
         Document doc = new Document(pdfDoc, ps);
-        doc.setProperty(Property.LEADING, new Leading(Leading.FIXED, 28.4965f));
+        doc.setProperty(Property.LEADING, new Leading(Leading.FIXED, 28.4365f));// не ровно 1 см (1.003176 )т.к если будет 1 см то не ровно при печати
 
         doc
                 .setFontSize(sizefont)
@@ -82,7 +90,9 @@ public class test {
                 .setProperty(Property.FONT, font);
 
         maxSize = doc.getPdfDocument().getDefaultPageSize().getWidth() - (doc.getLeftMargin() + doc.getRightMargin());
-
+        //6.5mm auto
+        //4.251969f 7.086615f
+        doc.setMargins(  4.251969f ,0, 36, 61.6929f);
       //String line = "в аб бав заф в аб бав заф в аб бав заф в аб бав заф в аб бав заф в аб бав заф";
         // ps1.add(s);
         // doc.add(ps1);
@@ -110,13 +120,30 @@ public class test {
 //String line = "Midnight Club II (с англ.-  «Полночный клуб 2») — видеоигра в жанре аркадных авто и мотогонок, разработанная студией Rockstar San Diego и изданная компанией Rockstar Games";
 //  p.add(line);
 //        p.add("\n");
+       PdfCanvas canvas = new PdfCanvas(pdfDoc.addNewPage());
+
+        Color magentaColor = new DeviceCmyk(0.f, 0.f, 0.f, 100.f);
+        //canvas.setStrokeColor(magentaColor);
+
+
+
+
+        for (double y = 5.66929f; y <= 595; y += 14.1732) {
+            canvas.moveTo(0, y);
+            canvas.lineTo(420, y);
+        }
+        for (double x = 0; x <= 420; x += 14.1732) {
+            canvas.moveTo(x, 0);
+            canvas.lineTo(x, 595);
+        }
+
+//
+        //canvas.closePathStroke();
         System.out.println("max " + maxSize);
         // System.out.println("Строка" + font.getWidth(line,sizefont));
         //System.out.println("one " + font.getWidth(line, sizefont));
         Words words = new Words();
         Hyphenator hyphenator = new Hyphenator();
-
-
 
         System.out.println("ListWidth = " + ListWidth);
         System.out.println(ListRandFont);
@@ -124,8 +151,11 @@ public class test {
 
         BufferedReader br = new BufferedReader(new FileReader(DEST2));
         String line;
-
+        boolean IsEmpty = false;
         while ((line = br.readLine()) != null) {
+            if(line.length()<40)
+                continue;
+
              ListWidth = new ArrayList<>();
            ListRandFont = new ArrayList<>();
             float Fspace = font.getWidth(" ",sizefont);
@@ -134,6 +164,8 @@ public class test {
             StringRes.add("");
             StringRes.add("");
             boolean paragCount = true;
+
+
             int n = 0;
             float result =0;
 
@@ -142,19 +174,23 @@ public class test {
                 result = 28.3465f;
                 firstLine = 28.3465f;
             }
-title =false;
+            title =false;
             int count = 0;
             int listWidthCount = 0;
-            Text t2 = new Text("");
-            Paragraph p = new Paragraph();
+            if(line.isEmpty()) {
 
+                IsEmpty =true;
+                System.out.println("IsEmpty");
+                System.out.println(line.length());
+            }
+            Text t2 = new Text("");
+
+
+
+            Paragraph p = new Paragraph();
             p.setFirstLineIndent(firstLine);
 
-if(line.isEmpty()) {
-    p.setMarginTop(228.35f);
-    System.out.println("isEmpty");
-}
-           // result+=28.3465f;
+
             List<String> Alist = words.Word_WithoutSpaceforMainPdf(line);
             WidthStroke((ArrayList<String>) Alist,result);
             for (int i = 0; i < Alist.size(); i++) {
@@ -164,8 +200,13 @@ if(line.isEmpty()) {
 
                 if (!parag) {
 
+
                     count++;
                     p = new Paragraph();
+
+
+
+
                     if (count % 2 == 0) {
 
                         p.setMarginLeft(3);
@@ -189,7 +230,7 @@ if(line.isEmpty()) {
                     for (int j = 0; j < Alist.get(i).length(); j++) {
                         t = new Text(String.valueOf(Alist.get(i).charAt(j)));
                         //Буквы вверх
-                        if (i % 5 == 0 && !words1.isNumber((Alist.get(i))) && Alist.get(i).length() > 5 && Alist.get(i).length() < 11 && words.isLeterSpec_Half(Alist.get(i))) {
+                        if (i % 5 == 0 && count!=0 && !words1.isNumber((Alist.get(i))) && Alist.get(i).length() > 5 && Alist.get(i).length() < 11 && words.isLeterSpec_Half(Alist.get(i))) {
                             countChange++;
                             t.setTextRise(textRise);
                             //Первая половина букв вверпх
@@ -209,7 +250,7 @@ if(line.isEmpty()) {
 
 
                         //Буквы вверх вниз
-                        else if (i % 7 == 0 && !words1.isNumber((Alist.get(i))) && Alist.get(i).length() > 5) {
+                        else if (  i % 7 == 0 && count!=0 &&  !words1.isNumber((Alist.get(i))) && Alist.get(i).length() > 5) {
                             if (Alist.get(i).length() <= 8) {
                                 if (Alist.get(i).length() / 2 >= countChange) {
                                     nplus += 1.0;
@@ -219,7 +260,7 @@ if(line.isEmpty()) {
 
                                 }
                                 t.setTextRise(nplus - nminus);
-                                t.setBackgroundColor(redColor);
+                              //  t.setBackgroundColor(redColor);
                             } else {
 
 
@@ -261,12 +302,12 @@ if(line.isEmpty()) {
                                 // с 5(+case) по 7(2х case, потому что в начале ничего не прибавляется (i>2)) ,буквы винз
                                 else if (countChange >= 5 + NumberofLetters && countChange < 7 + NumberofLetters + NumberofLetters) {
                                     nminus += 1.0;
-                                    // t2.setBackgroundColor(redColor);
+                                    // t.setBackgroundColor(redColor);
                                     t.setTextRise(nplus - nminus);
 
 
                                 }
-                                t.setBackgroundColor(greenColor);
+                               // t.setBackgroundColor(greenColor);
 
 
                             }
@@ -358,7 +399,18 @@ if(line.isEmpty()) {
                 }
 
                 if (!parag || !paragCount) {
+
+
                     p.add(t);
+                    if(IsEmpty ) {
+                        p.setMarginTop(28.35f);
+                        p.setMarginBottom(0);
+                        IsEmpty =false;
+                    }
+                    else {
+                        p.setMarginBottom(0);
+                        p.setMarginTop(0);
+                    }
                     doc.add(p);
                 }
 

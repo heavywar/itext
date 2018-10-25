@@ -1,5 +1,5 @@
 package main;
-
+//1)Печать четныый(дырки<-) 2)печать четных
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.geom.Rectangle;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -15,7 +15,7 @@ public class mirrorMargin {
 
 
 
-    public static final String DEST1 = "./fonts/tutorial/TXTtest33322.pdf";
+    public static final String DEST1 = "./fonts/tutorial/TXTtest122.pdf";
 
     public static final String DEST = "results/chapter02/canvas_repeat.pdf";
     int x =0;
@@ -39,7 +39,7 @@ public class mirrorMargin {
 
         // adding the same page 16 times with a different offset
 int n = 0;
-        for (int i = 1; i < srcDoc.getNumberOfPages(); i++) {
+        for (int i =1 ; i <= srcDoc.getNumberOfPages(); i++) {
             PdfFormXObject page = srcDoc.getPage(i).copyAsFormXObject(pdfDoc);
             content.clip();
             content.newPath();

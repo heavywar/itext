@@ -75,7 +75,13 @@ public class testHyph {
                         // .setKerningFeature(true)
 
                 ));
-         Paragraph p = testHyph.p("fff");
+        Paragraph p = new Paragraph();
+
+
+
+        p.setMarginTop(230);
+        p.add("xxxx");
+
          doc.add(p);
          doc.close();
 
