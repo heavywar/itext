@@ -189,8 +189,10 @@ return false;
 
     }
 
-    public static boolean isSpecifiedLetterLowerLastSpace(String str,int Int) {
-        if(str.charAt(Int +1) == ' ')
+    public  boolean isSimbolForSpec(String str,int Int) {
+        char[] SpecSimbol = {' ', ',', '.', ')', '?','!','1','2','3','4','5','6','7','8','9','0','*','#','"','-','+','=','%','<','>','/','&','|','-','_',';',':'};
+        for(int i = 0 ; i<SpecSimbol.length;i++)
+        if(str.charAt(Int) == SpecSimbol[i])
             return true;
 
                 return false;

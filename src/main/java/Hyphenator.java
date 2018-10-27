@@ -221,14 +221,22 @@ public class Hyphenator {
 
 
 
+
+
             exs = false;
 
             //   System.out.println("res = " +res);
             result+=res;
+            if(result<maxSize)
+                for(int j = 0; j<ar.get(i).length();j++)
+                {
+                   // System.out.println("arLase " +ar.get(i));
 
-            System.out.println("stringBuffer " +stringBuffer);
+                }
+
 
             if(result<=maxSize) {
+
                 resultMargin = result;
                 n += ar.get(i).length();
                 stringBuffer.append(ar.get(i)+ "-");
