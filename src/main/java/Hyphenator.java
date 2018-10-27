@@ -14,14 +14,11 @@ public class Hyphenator {
     public static final String FONTSpecEnd= "D:\\allFonts\\fontSpecEndLetter.ttf";
 
 
-    private String x = "йьъ";
-    private String g = "аеёиоуыэюяaeiouy";
-    private String s = "бвгджзклмнпрстфхцчшщbcdfghjklmnpqrstvwxz";
+
     private Vector rules = new Vector();
     public float minusResult;
-    public   PdfFont  fontSpecEndLetter;
-    public float minusResult2;
-    public float resultMargin;
+    private   PdfFont  fontSpecEndLetter;
+    private float resultMargin;
 
     public Hyphenator() {
         rules.addElement(new HyphenPair("xgg", 1));
@@ -47,6 +44,9 @@ public class Hyphenator {
 
 
     public String hyphenateWord(String text) {
+         String x = "йьъ";
+         String g = "аеёиоуыэюяaeiouy";
+         String s = "бвгджзклмнпрстфхцчшщbcdfghjklmnpqrstvwxz";
         test test = new test();
         StringBuffer sb = new StringBuffer();
         for(int i = 0; i < text.length(); i++) {
@@ -182,7 +182,7 @@ float resTest = result;
                    System.out.println("res3+res4 " + res3+res4);
                    System.out.println("res1+res2 " + res1+res2);
                    System.out.println(res1+res2);
-                  // result -=((res3+res4)-(res1+res2));
+                   result -=((res3+res4)-(res1+res2));
                    System.out.println("!!!" + ((res3+res4)-(res1+res2)));
                    System.out.println("resultR " + result);
 
@@ -328,7 +328,7 @@ float resTest = result;
                     System.out.println("res3+res4 " + res3+res4);
                     System.out.println("res1+res2 " + res1+res2);
                     System.out.println(res1+res2);
-                  //  result -=((res3+res4)-(res1+res2));
+                   result -=((res3+res4)-(res1+res2));
                     System.out.println("!!!" + ((res3+res4)-(res1+res2)));
                     System.out.println("resultR " + result);
 
