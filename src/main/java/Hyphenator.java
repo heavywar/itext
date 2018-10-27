@@ -4,11 +4,14 @@ import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.element.Paragraph;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
+import main.Words;
 
 
 public class Hyphenator {
+    public static final String FONTSpecEnd= "D:\\allFonts\\fontSpecEndLetter.ttf";
 
 
     private String x = "йьъ";
@@ -16,6 +19,7 @@ public class Hyphenator {
     private String s = "бвгджзклмнпрстфхцчшщbcdfghjklmnpqrstvwxz";
     private Vector rules = new Vector();
     public float minusResult;
+    public   PdfFont  fontSpecEndLetter;
     public float minusResult2;
     public float resultMargin;
 
@@ -82,8 +86,8 @@ public class Hyphenator {
 //       String string = "Автомеханник";
 //    }
 
-    public ArrayList <String> widtString(float result,float maxSize,PdfFont font,String str)
-    {
+    public ArrayList <String> widtString(float result,float maxSize,PdfFont font,String str) throws IOException {
+          fontSpecEndLetter =  PdfFontFactory.createFont(FONTSpecEnd, PdfEncodings.IDENTITY_H, true);
         resultMargin = 0;
         //System.out.println(" m = " +maxSize);
         minusResult = 0;
@@ -94,7 +98,10 @@ public class Hyphenator {
         String s = hyphenateWord(str);
        ArrayList<String> ar = ArrayList(s);
          int n = 0;
+        int n1 = 0;
          boolean Break = true;
+        boolean exs = true;
+
         boolean Break22 = true;
         if(result +font.getWidth(str,test.sizefont)-space<maxSize )
         {
@@ -108,7 +115,6 @@ public class Hyphenator {
 
            // return StringRes.add(str);
         }
-         boolean exs = true;
 
         result+=hyphen;
         if(result + font.getWidth(ar.get(0),test.sizefont)>maxSize)
@@ -122,21 +128,73 @@ public class Hyphenator {
             StringRes.add(str);
             return StringRes;
         }
+int count = 0;
+String lastSlog ="";
+float resTest = result;
+        for(int i = 0; i<ar.size();i++) {
+            float res = font.getWidth(ar.get(i), test.sizefont);
+          //  System.out.println("часть - " + ar.get(i) + " Width части - " + res + " width Result - " + result + res);
 
+
+            resTest += res;
+
+
+
+            if (resTest < maxSize ) {
+                lastSlog = ar.get(i);
+
+            }
+        }
        for(int i = 0; i<ar.size();i++)
        {
            float res = font.getWidth(ar.get(i),test.sizefont);
-           System.out.println("часть - " + ar.get(i) + " Width части - "+ res + " width Result - " + result+res);
+          // float res12 = font.getWidth(ar.get(i+1),test.sizefont);
 
+          System.out.println("часть - " + ar.get(i) + " Width части - "+ res + " width Result - " + result+res);
+           Words words =new Words();
 
-
-           exs = false;
-
-           //   System.out.println("res = " +res);
+           float res1 = 0;
+           float res2 = 0;
+           float res3 = 0;
+           float res4 = 0;
            result+=res;
+           if(result<=maxSize) {
+               resultMargin = result;
+               n1 += ar.get(i).length();
+               count++;//3
+
+           }
+            if (result<maxSize && Break &&ar.get(i).equals(lastSlog)) {
+
+               res1 = fontSpecEndLetter.getWidth(str.substring(n1 - 1, n1), test.sizefont);
+               res2 = font.getWidth(str.substring(n1 - 2, n1-1), test.sizefont);
+                res3 = font.getWidth(str.substring(n1 - 1, n1), test.sizefont);
+                res4 =font.getWidth(str.substring(n1 - 2, n1-1), test.sizefont);
+                System.out.println("%%" + str.substring(n1 - 2, n1-1) +" " + res2);
+                System.out.println("%%" + str.substring(n1 - 1, n1)+" " + res1);
+                System.out.println(ar.get(i).charAt(ar.get(i).length()-2)+" " + res4);
+                System.out.println(ar.get(i).charAt(ar.get(i).length()-1)+" " + res3);
+
+               if(words.isSpecifiedLetterLowerLast(str.substring(n1 - 1, n1).charAt(0))){
+                   System.out.println("ar.get" +ar.get(i));
+                   System.out.println("resultR1 " + result);
+                   System.out.println("res " +res);
+                   System.out.println("res3+res4 " + res3+res4);
+                   System.out.println("res1+res2 " + res1+res2);
+                   System.out.println(res1+res2);
+                  // result -=((res3+res4)-(res1+res2));
+                   System.out.println("!!!" + ((res3+res4)-(res1+res2)));
+                   System.out.println("resultR " + result);
+
+               }
+
+               //Break = false;
+
+           }
 
 
            if(result<=maxSize) {
+
                resultMargin = result;
                n += ar.get(i).length();
                stringBuffer.append(ar.get(i)+ "-");
@@ -173,8 +231,8 @@ public class Hyphenator {
         return StringRes;
     }
 
-    public float widtCount(float result,float maxSize,PdfFont font,String str)
-    {
+    public float widtCount(float result,float maxSize,PdfFont font,String str) throws IOException {
+        fontSpecEndLetter =  PdfFontFactory.createFont(FONTSpecEnd, PdfEncodings.IDENTITY_H, true);
         resultMargin = 0;
         //System.out.println(" m = " +maxSize);
         minusResult = 0;
@@ -185,8 +243,10 @@ public class Hyphenator {
         String s = hyphenateWord(str);
         ArrayList<String> ar = ArrayList(s);
         int n = 0;
-        boolean Break = true;
         boolean Break22 = true;
+        int n1 = 0;
+        boolean Break = true;
+        boolean exs = true;
         if(result +font.getWidth(str,test.sizefont)-space<maxSize )
         {
             minusResult = 0;
@@ -199,7 +259,7 @@ public class Hyphenator {
 
             // return StringRes.add(str);
         }
-        boolean exs = true;
+
 
         result+=hyphen;
         if(result + font.getWidth(ar.get(0),test.sizefont)>maxSize)
@@ -214,29 +274,70 @@ public class Hyphenator {
             return resultMargin;
         }
 
+        String lastSlog ="";
+        float resTest = result;
+        for(int i = 0; i<ar.size();i++) {
+            float res = font.getWidth(ar.get(i), test.sizefont);
+            //  System.out.println("часть - " + ar.get(i) + " Width части - " + res + " width Result - " + result + res);
+
+
+            resTest += res;
+
+
+
+            if (resTest < maxSize ) {
+                lastSlog = ar.get(i);
+
+            }
+        }
         for(int i = 0; i<ar.size();i++)
         {
             float res = font.getWidth(ar.get(i),test.sizefont);
             System.out.println("часть - " + ar.get(i) + " Width части - "+ res + " width Result - " + result+res);
 
 
+            System.out.println("stringBuffer " +stringBuffer);
+            Words words =new Words();
 
-
-
-            exs = false;
-
-            //   System.out.println("res = " +res);
+            float res1 = 0;
+            float res2 = 0;
+            float res3 = 0;
+            float res4 = 0;
             result+=res;
-            if(result<maxSize)
-                for(int j = 0; j<ar.get(i).length();j++)
-                {
-                   // System.out.println("arLase " +ar.get(i));
+            if(result<=maxSize) {
+                resultMargin = result;
+                n1 += ar.get(i).length();
+
+
+            }
+            if (result<maxSize && Break &&ar.get(i).equals(lastSlog)) {
+
+                res1 = fontSpecEndLetter.getWidth(str.substring(n1 - 1, n1), test.sizefont);
+                res2 = font.getWidth(str.substring(n1 - 2, n1-1), test.sizefont);
+                res3 = font.getWidth(str.substring(n1 - 1, n1), test.sizefont);
+                res4 =font.getWidth(str.substring(n1 - 2, n1-1), test.sizefont);
+                System.out.println("%%" + str.substring(n1 - 2, n1-1) +" " + res2);
+                System.out.println("%%" + str.substring(n1 - 1, n1)+" " + res1);
+                System.out.println(ar.get(i).charAt(ar.get(i).length()-2)+" " + res4);
+                System.out.println(ar.get(i).charAt(ar.get(i).length()-1)+" " + res3);
+
+                if(words.isSpecifiedLetterLowerLast(str.substring(n1 - 1, n1).charAt(0))){
+                    System.out.println("ar.get" +ar.get(i));
+                    System.out.println("resultR1 " + result);
+                    System.out.println("res " +res);
+                    System.out.println("res3+res4 " + res3+res4);
+                    System.out.println("res1+res2 " + res1+res2);
+                    System.out.println(res1+res2);
+                  //  result -=((res3+res4)-(res1+res2));
+                    System.out.println("!!!" + ((res3+res4)-(res1+res2)));
+                    System.out.println("resultR " + result);
 
                 }
 
+                //Break = false;
 
+            }
             if(result<=maxSize) {
-
                 resultMargin = result;
                 n += ar.get(i).length();
                 stringBuffer.append(ar.get(i)+ "-");

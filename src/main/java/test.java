@@ -24,6 +24,7 @@ import main.mirrorMargin;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,11 +97,11 @@ public class test {
       //String line = "в аб бав заф в аб бав заф в аб бав заф в аб бав заф в аб бав заф в аб бав заф";
         // ps1.add(s);
         // doc.add(ps1);
-      // String line = "никб. авторемонтник2 авторемffffffонтник3 авторемонтник4 авторемонтник5 авторемонтник6 авторемонтник7  авторемонтник8";
+     // String line = "ник авторемонтнаикб авраник3 авторомонтник4 авторемfffffffонтник5 авторомонтник6 авторемонтник7  авторемонтник8";
         //автореrrrrмонтник5  авторемонтник6 авторемонтник7 авторемонтник8 автореrrrrмонтник9 автореrrrrмонтник10"  ;
-    //   String line  = "Midnight Club II (с англ.-  «Полночный клуб 2») — видеоигра в жанре аркадных авто и мотогонок, разработанная студией Rockstar San Diego и изданная компанией Rockstar Games для игровых приставок PlayStation 2 и Xbox и для персональных компьютеров под управлением Windows в 2003 году. За локализацию гоночной аркады в России была ответственна компания «1С-СофтКлаб». 4 января 2008 года Midnight Club II была переиздана в сервисе Steam. В марте 2013 года игра стала доступна в разделе «PS2 Classics» сервиса PlayStation Network для консоли PlayStation 3. Midnight Club II является продолжением Midnight Club: Street Racing и второй игрой серии Midnight Club[⇨]." +
-//
-        String line = "К началу лета 1861 года (первого года Гражданской войны) перед Конфедерацией стояла задача оборонять Северную Виргинию. Это подразумевало необходимость держать армию на направлении Вашингтон-Ричмонд и в долине Шенандоа. Армия Юга была слишком мала, чтобы удерживать оба эти фронта, поэтому много надежд возлагалось на Манассасскую железную дорогу, которая позволяла перебрасывать силы из долины Шенандоа на восток или в обратном направлении, смотря по ситуации. Слабым местом этой дороги была станция Манассас, которая находилась всего в 30 милях от Вашингтона. Было очевидно, что федеральная армия в первую очередь постарается захватить Манассас, «наиболее важный стратегический пункт в Виргинии», по словам одного рядового южнокаролинца. К началу июля 1861 года многие полагали, что первое и, вероятно, последнее сражение этой войны произойдёт под Манассасом[4]. Ещё в мае генерал-майор Роберт Ли, главнокомандующий виргинскими вооружёнными силами, велел удерживать Манассас любой ценой. Он полагал, что стоит возвести укреплённую линию на рубеже реки Булл-Ран, и обещал прислать для этого инструменты[5]." +
+       //String line  = "Midnight Club II (с англ.-  «Полночный клуб 2») — видеоигра в жанре аркадных авто и мотогонок, разработанная студией Rockstar San Diego и изданная компанией Rockstar Games для игровых приставок PlayStation 2 и Xbox и для персональных компьютеров под управлением Windows в 2003 году. За локализацию гоночной аркады в России была ответственна компания «1С-СофтКлаб». 4 января 2008 года Midnight Club II была переиздана в сервисе Steam. В марте 2013 года игра стала доступна в разделе «PS2 Classics» сервиса PlayStation Network для консоли PlayStation 3. Midnight Club II является продолжением Midnight Club: Street Racing и второй игрой серии Midnight Club[⇨]." ;
+
+        String line = "К начало. лета 1861 года (первого года Гражданской войны) перед Конфедерацией стояла задача оборонять Северную Виргинию. Это подразумевало необходимость держать армию на направлении Вашингтон-Ричмонд и в долине Шенандоа. Армия Юга была слишком мала, чтобы удерживать оба эти фронта, поэтому много надежд возлагалось на Манассасскую железную дорогу, которая позволяла перебрасывать силы из долины Шенандоа на восток или в обратном направлении, смотря по ситуации. Слабым местом этой дороги была станция Манассас, которая находилась всего в 30 милях от Вашингтона. Было очевидно, что федеральная армия в первую очередь постарается захватить Манассас, «наиболее важный стратегический пункт в Виргинии», по словам одного рядового южнокаролинца. К началу июля 1861 года многие полагали, что первое и, вероятно, последнее сражение этой войны произойдёт под Манассасом[4]. Ещё в мае генерал-майор Роберт Ли, главнокомандующий виргинскими вооружёнными силами, велел удерживать Манассас любой ценой. Он полагал, что стоит возвести укреплённую линию на рубеже реки Булл-Ран, и обещал прислать для этого инструменты[5]." +
 
                 "Для обороны Манассаса Конфедерация задействовала свою самую крупную армию — Потомакскую. Сама станция была окружена земляными укреплениями. Река Булл-Ран, протекавшая в трёх милях от Манассаса, представляла собой естественное препятствие — она была неширока и глубиной не более метра, но её крутые берега были исключительно удобны для обороны. Южане укрепили все переправы через Булл-Ран на участке в 8 миль от Уоррентонской дороги до брода Юнион-Милл-Форд. На подступах к реке были расставлены многочисленные пикеты. Связь между пикетами и отдельными частями армии обеспечивалась флажковой сигнализацией, которой заведовал капитан Эдвард Александер[6]." +
 
@@ -141,7 +142,7 @@ public class test {
         //canvas.closePathStroke();
         System.out.println("max " + maxSize);
         // System.out.println("Строка" + font.getWidth(line,sizefont));
-       System.out.println("one " + font.getWidth("-", sizefont));
+       System.out.println("one " + font.getWidth("р", sizefont));
         Words words = new Words();
         Hyphenator hyphenator = new Hyphenator();
 
@@ -150,7 +151,7 @@ public class test {
         Words words1 = new Words();
 
         BufferedReader br = new BufferedReader(new FileReader(DEST2));
-        //String line;
+     //   String line;
         boolean IsEmpty = false;
 //        while ((line = br.readLine()) != null) {
 //            if(line.length()<40)
@@ -170,10 +171,10 @@ public class test {
             float result =0;
 
             float firstLine = 0;
-//            if(line.length()>70 || title ) {
-//                result = 28.3465f;
-//                firstLine = 28.3465f;
-//            }
+            if(line.length()>70 || title ) {
+                result = 28.3465f;
+                firstLine = 28.3465f;
+            }
             title =false;
             int count = 0;
             int listWidthCount = 0;
@@ -227,26 +228,27 @@ public class test {
                     float textRise = 0;
                     float nplus = 0f;
                     float nminus = 0;
-                    boolean b = true;
                     for (int j = 0; j < Alist.get(i).length(); j++) {
-                        b = false;
+//                        if(Alist.get(i).length()<3)
+//                          continue;
                         t = new Text(String.valueOf(Alist.get(i).charAt(j)));
                         //Буквы вверх
-                        if (i % 5 == 0 && count!=0 && !words1.isNumber((Alist.get(i))) && Alist.get(i).length() > 5 && Alist.get(i).length() < 11 && words.isLeterSpec_Half(Alist.get(i))) {
+                        if (i % 5 == 0 && count!=0 && !words1.isNumber((Alist.get(i))) && Alist.get(i).length() > 5 && Alist.get(i).length() < 11 ) {
                             countChange++;
                             t.setTextRise(textRise);
                             //Первая половина букв вверпх
-                            if (i % 2 == 0) {
+                            if (i % 2 == 0 && words.isLeterSpec_Half(Alist.get(i))) {
                                 if (countChange < Alist.get(i).length() / 2)
                                     textRise += 0.85;
 
                             }
                             //Вторая половигна букв вверх
-                            else {
-                                if (countChange > Alist.get(i).length() / 2)
+                            else if(i%2 != 0){
+                                if (countChange >= Alist.get(i).length() / 2)
                                     textRise += 0.85;
 
                             }
+
 
                         }
 
@@ -262,7 +264,7 @@ public class test {
 
                                 }
                                 t.setTextRise(nplus - nminus);
-                              //  t.setBackgroundColor(redColor);
+                            //  t.setBackgroundColor(redColor);
                             } else {
 
 
@@ -295,7 +297,7 @@ public class test {
                                 }
                                 if (countChange > 2 && countChange <= 4 + NumberofLetters) {//Со второй буквы по 4(+case) буквы вверх
                                     nplus += 1.0;
-                                    // t2.setBackgroundColor(greenColor);
+                                   //  t2.setBackgroundColor(greenColor);
                                     t.setTextRise(nplus - nminus);
 
                                 }
@@ -309,49 +311,52 @@ public class test {
 
 
                                 }
-                               // t.setBackgroundColor(greenColor);
+                              //  t.setBackgroundColor(greenColor);
 
 
                             }
                             countChange++;
                         }
-                      // System.out.println("n " +n);
-                      //  System.out.println("Array " + ListRandFont.size());
-                        System.out.println("AlistLst" +Alist.get(i).charAt(Alist.get(i).length()-1)+"|");
+                       // System.out.println("n " +n);
+                       // System.out.println("Array " + ListRandFont.size());
 
-                            //Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 2)
 
-                            if(Alist.get(i).charAt(Alist.get(i).length() - 1) == ' ' && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 2))
-                                b =true;
-                        if( Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 2))
-                            b =true;
-                        if (Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 2) && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
+                        if ( Alist.get(i).length() > 3 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 3) && words.isSimbolForSpec(Alist.get(i),Alist.get(i).length() - 2) && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
 
                             t.setFont(fontSpecEndLetter);
-                            result += font.getWidth(Alist.get(i).charAt(j), sizefont);
+                            result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
 
 
-                        } else if (j == 0 && words.isSpecifiedLetterLowerfirst(Alist.get(i).charAt(j))) {
+                        }
+                        else  if ( Alist.get(i).length() > 1 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 2) &&  Alist.get(i).charAt(Alist.get(i).length() - 1) == ' ' && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
+                            t.setFont(fontSpecEndLetter);
+                            result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
+                        }
+
+                         else if (j == 0 && words.isSpecifiedLetterLowerfirst(Alist.get(i).charAt(j))) {
                             t.setFont(fontSpec);
                             result += fontSpec.getWidth(Alist.get(i).charAt(j), sizefont);
 
-                        } else {
-                            if (ListRandFont.get(n) == 1) {
-                                t.setFont(font);
-                                result += font.getWidth(Alist.get(i).charAt(j), sizefont);
-                            }
+                        }
+                        else {
+                            try {
 
-                            else if (ListRandFont.get(n) == 2) {
-                                t.setFont(font2);
-                                result += font2.getWidth(Alist.get(i).charAt(j), sizefont);
-                            }
-                           else  if (ListRandFont.get(n) == 3) {
-                                t.setFont(font3);
-                                result += font3.getWidth(Alist.get(i).charAt(j), sizefont);
-                            }
-                            else if (ListRandFont.get(n) == 4) {
-                                t.setFont(font4);
-                                result += font4.getWidth(Alist.get(i).charAt(j), sizefont);
+
+                                if (ListRandFont.get(n) == 1) {
+                                    t.setFont(font);
+                                    result += font.getWidth(Alist.get(i).charAt(j), sizefont);
+                                } else if (ListRandFont.get(n) == 2) {
+                                    t.setFont(font2);
+                                    result += font2.getWidth(Alist.get(i).charAt(j), sizefont);
+                                } else if (ListRandFont.get(n) == 3) {
+                                    t.setFont(font3);
+                                    result += font3.getWidth(Alist.get(i).charAt(j), sizefont);
+                                } else if (ListRandFont.get(n) == 4) {
+                                    t.setFont(font4);
+                                    result += font4.getWidth(Alist.get(i).charAt(j), sizefont);
+                                }
+                            }catch (IndexOutOfBoundsException ex) {
+                                System.out.println("ERROR");;
                             }
                         }
 
@@ -381,13 +386,13 @@ public class test {
                     if (result + font.getWidth(Alist.get(i + 1), sizefont) > maxSize) {
 
                         parag = false;
-                        System.out.println(" resultMain" + result);
+                       // System.out.println(" resultMain" + result);
 
                         StringRes = hyphenator.widtString(result, maxSize, font, Alist.get(i + 1));
                         System.out.println("buffer " + StringRes);
                         float letter_after_hyph = hyphenator.minusResult;
                         System.out.println("БУквы после дифиса" + hyphenator.minusResult);
-                        t = new Text(StringRes.get(0));
+                       t = new Text(StringRes.get(0));
                         result = 0 + letter_after_hyph;
 
 
@@ -403,40 +408,27 @@ public class test {
                 }
 
                 if (Alist.size() - 1 == i) { //Нужен чтобы доавить последнюю стоку.
-                    System.out.println("!!!FALSE+");
-
+                 //   System.out.println("!!!FALSE+");
+//
                     paragCount = false;
-                    ////!!!
                     StringRes.add(0,"");
-
                 }
 
                 if (!parag || !paragCount) {
-                    try {
-                       float res = 0;
-                        boolean b = true;
-                        for (int j = 0; j < StringRes.get(0).length(); j++) {
-                            t = new Text(String.valueOf(StringRes.get(0).charAt(j)));
+//                    for (int j = 0; j < StringRes.get(0).length(); j++) {
+//                        t = new Text(String.valueOf(StringRes.get(0).charAt(j)));
+//                        if (StringRes.get(0).charAt(j) == StringRes.get(0).charAt(StringRes.get(0).length() - 2)
+//                                && words.isSpecifiedLetterLowerLast(StringRes.get(0).charAt(j))) {
+//                            t.setFont(fontSpecEndLetter);
+//                        } else
+//                            t.setFont(font);
 //
-//                            if (b &&StringRes.get(0).charAt(j+1) == '-') {
-//                               // t.setFont(fontSpecEndLetter);
-//                                res+=fontSpecEndLetter.getWidth(String.valueOf(StringRes.get(0).charAt(j)),sizefont);
-//                                b=false;
-//                            }
-//                            else {
-                                t.setFont(font);
-                                res += font.getWidth(String.valueOf(StringRes.get(0).charAt(j)), sizefont);
-                           // }
-                           // System.out.println("res " + res);
+//
+//                        p.add(t);
+//                    }
 
+                  p.add(t);
 
-                            p.add(t);
-                            //p.add(t);
-                        }
-
-
-                    }catch (StringIndexOutOfBoundsException ex){}
-                  //  p.add(t);
                     if(IsEmpty ) {
                         p.setMarginTop(28.35f);
                         p.setMarginBottom(0);
@@ -483,12 +475,17 @@ public class test {
 
                 for (int j = 0; j < Alist.get(i).length(); j++) {
                     int rand = 1 + (int) (Math.random() *4);
-                    if (Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 2) && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
-
+                        if ( Alist.get(i).length() > 3 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 3) && words.isSimbolForSpec(Alist.get(i),Alist.get(i).length() - 2) && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
                         result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
 
 
-                    } else if (j == 0 && words.isSpecifiedLetterLowerfirst(Alist.get(i).charAt(j))) {
+                    }
+                        else  if ( Alist.get(i).length() > 2 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 2) &&  Alist.get(i).charAt(Alist.get(i).length() - 1) == ' ' && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
+                    result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
+                }
+
+
+                    else if (j == 0 && words.isSpecifiedLetterLowerfirst(Alist.get(i).charAt(j))) {
                         result += fontSpec.getWidth(Alist.get(i).charAt(j), sizefont);
 
                     }
@@ -536,7 +533,9 @@ public class test {
 
                 }
 
-            } catch (IndexOutOfBoundsException ex) { }
+            } catch (IndexOutOfBoundsException ex) { } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         System.out.println("count+++" + count);
 

@@ -38,7 +38,7 @@ public class Words {
     public boolean isLeterSpec_Half(String str) {
         if (str == null || str.isEmpty()) return false;
         for (int i = str.length()/2; i < str.length(); i++) {
-            if (str.charAt(i) == 'д' || str.charAt(i) == 'у' || str.charAt(i) == 'з' || str.charAt(i) == 'щ' || str.charAt(i) == 'р' ||str.charAt(i) == 'ф'||str.charAt(i) == 'ц'||str.charAt(i) == 'щ' )
+            if (str.charAt(i) == 'д' || str.charAt(i) == 'у' || str.charAt(i) == 'з' || str.charAt(i) == 'щ' || str.charAt(i) == 'р' ||str.charAt(i) == 'ф'||str.charAt(i) == 'ц'||str.charAt(i) == 'щ' || str.charAt(i) == 'х'|| str.charAt(i) == 'ж'|| str.charAt(i) == 'г')
                 return false;
         }
         return true;
@@ -189,13 +189,20 @@ return false;
 
     }
 
-    public  boolean isSimbolForSpec(String str,int Int) {
-        char[] SpecSimbol = {' ', ',', '.', ')', '?','!','1','2','3','4','5','6','7','8','9','0','*','#','"','-','+','=','%','<','>','/','&','|','-','_',';',':'};
-        for(int i = 0 ; i<SpecSimbol.length;i++)
-        if(str.charAt(Int) == SpecSimbol[i])
+    public static boolean isSpecifiedLetterLowerLastSpace(String str,int Int) {
+        if(str.charAt(Int +1) == ' ')
             return true;
 
                 return false;
+
+    }
+    public  boolean isSimbolForSpec(String str,int Int) {
+        char[] SpecSimbol = {' ', ']',',', '.', ')', '?','!','1','2','3','4','5','6','7','8','9','0','*','#','"','-','+','=','%','<','>','/','&','|','-','_',';',':'};
+        for(int i = 0 ; i<SpecSimbol.length;i++)
+            if( str.length() >3 && str.charAt(Int) == SpecSimbol[i])
+                return true;
+
+        return false;
 
     }
 
