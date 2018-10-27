@@ -125,12 +125,8 @@ public class Words {
         return countSpace;
     }
 
-    public boolean checkLigature(String s) {
 
-int i ;
-return false;
-    }
-    public static  boolean isLegature(String string)
+    public static boolean isLegature(String string)
     {
         String []Legature = {"аг","ав","ал","ах","ач","ая","аз","бв","бг","бя","бе","бя","бч","бж","вл","вя","ве","иг","ие","из","иг","их","ия","лег","рег","ег","еж","ез","еч","ог","оз","ож","ом","ол","оч","оэ","оя","о ","э ","ю ","ъ ","ь ","б ","в ","ст","пр","ее","ей"," в","иеч","иез","азг","вз","вг","ая","уз"," з"," ч"," х"," г","ич","ое","ий","о-","б-","в-","ю-","ъ-","ь-","э-","ав-","бв-","нг"};
         for(int i = 0; i<Legature.length;i++)
@@ -144,7 +140,7 @@ return false;
 
 
     }
-    public static boolean isLegatureSpec(String string) {
+    public  boolean isLegatureSpec(String string) {
         String[] Legature = {"Вг", "Вж", "Вэ", "Вч", "Вх",
                 "Бг", "Бж", "Бэ", "Бч", "Бх",
                 "Гг", "Гж", "Гэ", "Гч", "Гх",
@@ -166,7 +162,7 @@ return false;
 
 
     }
-    public static boolean isSpecifiedLetterLowerfirst(char Char) {
+    public  boolean isSpecifiedLetterLowerfirst(char Char) {
         char[] Legature = {'г', 'ж', 'з', 'ч', 'х'};
         for (int i = 0; i < Legature.length; i++) {
             if (Char == Legature[i])
@@ -189,13 +185,6 @@ return false;
 
     }
 
-    public static boolean isSpecifiedLetterLowerLastSpace(String str,int Int) {
-        if(str.charAt(Int +1) == ' ')
-            return true;
-
-                return false;
-
-    }
     public  boolean isSimbolForSpec(String str,int Int) {
         char[] SpecSimbol = {' ', ']',',', '.', ')', '?','!','1','2','3','4','5','6','7','8','9','0','*','#','"','-','+','=','%','<','>','/','&','|','-','_',';',':'};
         for(int i = 0 ; i<SpecSimbol.length;i++)
