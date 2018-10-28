@@ -18,6 +18,8 @@ public class Hyphenator {
     public float minusResult;
     private   PdfFont  fontSpecEndLetter;
     private float resultMargin;
+    public   ArrayList <String> StringRes2 = new ArrayList<>();
+
 
     public Hyphenator() {
         rules.addElement(new HyphenPair("xgg", 1));
@@ -175,10 +177,11 @@ float resTest = result;
     }
 //Дубликат нужен чтобы добавить пробелы
     public float widtCount(float result,float maxSize,PdfFont font,String str) throws IOException {
+        StringRes2 = new ArrayList<>();
+
         fontSpecEndLetter =  PdfFontFactory.createFont(FONTSpecEnd, PdfEncodings.IDENTITY_H, true);
         resultMargin = 0;
         minusResult = 0;
-        ArrayList <String> StringRes = new ArrayList<>();
         float space = font.getWidth(" ", MainPdf.sizefont);
         float hyphen =  font.getWidth("-", MainPdf.sizefont);
         String s = hyphenateWord(str);
@@ -190,7 +193,8 @@ float resTest = result;
         {
             minusResult = 0;
             resultMargin = result+font.getWidth(str, MainPdf.sizefont)-space;
-            StringRes.add(str);
+            StringRes2.add(str);
+            StringRes2.add("");
             return resultMargin;
 
             // return StringRes.add(str);
@@ -203,8 +207,8 @@ float resTest = result;
             minusResult = font.getWidth(str, MainPdf.sizefont);
             resultMargin = result-hyphen-space;
 
-            StringRes.add("");
-            StringRes.add(str);
+            StringRes2.add("");
+            StringRes2.add(str);
             return resultMargin;
         }
 
@@ -258,8 +262,8 @@ float resTest = result;
 
 
             hyphennext =   str.substring(n);
-            StringRes.add(str.substring(0, n) + "-");
-            StringRes.add(str.substring(n));
+            StringRes2.add(str.substring(0, n) + "-");
+            StringRes2.add(str.substring(n));
             //resultAp = str.substring(0, n) + "-" + str.substring(n);
 
 

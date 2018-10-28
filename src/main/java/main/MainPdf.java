@@ -19,6 +19,7 @@ import com.itextpdf.layout.property.Property;
 import com.itextpdf.licensekey.LicenseKey;
 
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -34,21 +35,21 @@ public class MainPdf {
 
     // public static final String FONT1 = "D:\\fontGZ....ttf";
     // public static final String FONT3 = "D:\\newFont2т.ttf";
-    public static final String FONT = "D:\\allFonts\\font.ttf";
-    public static final String FONTSpec = "D:\\allFonts\\fontSpecificLetter.ttf";
-    public static final String FONT2 = "D:\\allFonts\\Font2.ttf";
-    public static final String FONT3 = "D:\\allFonts\\Font3.ttf";
-    public static final String FONT4 = "D:\\allFonts\\Font4.ttf";
-    public static final String FONTSpecEnd= "D:\\allFonts\\fontSpecEndLetter.ttf";
+    private static final String FONT = "D:\\allFonts\\font.ttf";
+    private static final String FONTSpec = "D:\\allFonts\\fontSpecificLetter.ttf";
+    private static final String FONT2 = "D:\\allFonts\\Font2.ttf";
+    private static final String FONT3 = "D:\\allFonts\\Font3.ttf";
+    private static final String FONT4 = "D:\\allFonts\\Font4.ttf";
+    private static final String FONTSpecEnd= "D:\\allFonts\\fontSpecEndLetter.ttf";
 
-    public static float maxSize;
-    public static PdfFont font;
-    public static PdfFont font2;
-    public static PdfFont font3;
-    public static PdfFont font4;
-    public static PdfFont fontSpec;
-    public  static PdfFont fontSpecEndLetter;
-    static int sizefont = 16;
+    private  static float  maxSize ;
+    private static PdfFont font;
+    private static PdfFont font2;
+    private static PdfFont font3;
+    private static PdfFont font4;
+    private static PdfFont fontSpec;
+    private  static PdfFont fontSpecEndLetter;
+    public static  final int sizefont = 16;
     //Добавлеине в лист width параграфов
    static  ArrayList<Float> ListWidth = new ArrayList<>();
    //Добавление рандома
@@ -156,7 +157,6 @@ public class MainPdf {
             StringRes.add("");
             boolean paragCount = true;
 
-
             int n = 0;
             float result =0;
 
@@ -184,11 +184,10 @@ public class MainPdf {
 
             WidthStroke((ArrayList<String>) Alist,result);
             for (int i = 0; i < Alist.size(); i++) {
-
-
                 Text t;
 //false становиться после дефиса
                 if (!parag) {
+                    result = 0;
                     count++;
                     p = new Paragraph();
                     if (count % 2 == 0) {
@@ -199,8 +198,35 @@ public class MainPdf {
                         p.setMarginLeft(5);
                         result += 5;
                     }
-                    p.add(t2);
 
+                    for (int j = 0; j < StringRes.get(1).length(); j++) {
+                      t2 = new Text(String.valueOf(StringRes.get(1).charAt(j)));
+                        if (j ==StringRes.get(1).length() - 2&&StringRes.get(1).length()>3&&StringRes.get(1).charAt(j) == StringRes.get(1).charAt(StringRes.get(1).length() - 3 ) && words.isSimbolForSpec(StringRes.get(1),StringRes.get(1).length()-2) && words.isSpecifiedLetterLowerLast(StringRes.get(1).charAt(j))&& StringRes.get(1).charAt(StringRes.get(1).length() - 1) == ' ') {
+                            t2.setFont(fontSpecEndLetter);
+                            result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
+
+                        }
+//                        //Порсле пробела если буква о в б и тд. то доп шрифт
+////Если вначале есть буква г з и тд то новый шрифт
+                        else if (j == 0 && words.isSpecifiedLetterLowerfirst(StringRes.get(1).charAt(j))) {
+                            t2.setFont(fontSpec);
+                            result += fontSpec.getWidth(Alist.get(i).charAt(j), sizefont);
+
+                        }
+                       else if (j ==StringRes.get(1).length() - 2 &&StringRes.get(1).length()>1&&StringRes.get(1).charAt(j) == StringRes.get(1).charAt(StringRes.get(1).length() - 2 ) && StringRes.get(1).charAt(StringRes.get(1).length() - 1) == ' ' && words.isSpecifiedLetterLowerLast(StringRes.get(1).charAt(j))) {
+                            t2.setFont(fontSpecEndLetter);
+                            result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
+                        } else {
+                           t2.setFont(font);
+                         result += font.getWidth(StringRes.get(1).charAt(j), sizefont);
+
+                        }
+                       ;
+                        p.add(t2);
+
+                        //StringRes.get(1);
+                    }
+                   // p.add(t2);
                 }
 
 
@@ -301,7 +327,7 @@ public class MainPdf {
 
 
                         //Если слово больше 3(нужено чтобы не было ошибки IndexOutOfBoundsException)И если слово с конца(+пробел) содержит -,.! и тд, то применяется специльный шрифт
-                        if ( Alist.get(i).length() > 3 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 3) && words.isSimbolForSpec(Alist.get(i),Alist.get(i).length() - 2) && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
+                        if (j ==Alist.get(i).length() - 2&& Alist.get(i).length() > 3 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 3) && words.isSimbolForSpec(Alist.get(i),Alist.get(i).length() - 2) && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
 
                             t.setFont(fontSpecEndLetter);
                             result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
@@ -310,7 +336,7 @@ public class MainPdf {
                         }
                         //Порсле пробела если буква о в б и тд. то доп шрифт
 
-                        else  if ( Alist.get(i).length() > 1 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 2) &&  Alist.get(i).charAt(Alist.get(i).length() - 1) == ' ' && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
+                        else  if (j ==Alist.get(i).length() - 2&& Alist.get(i).length() > 1 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 2) &&  Alist.get(i).charAt(Alist.get(i).length() - 1) == ' ' && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
                             t.setFont(fontSpecEndLetter);
                             result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
                         }
@@ -343,7 +369,7 @@ public class MainPdf {
 
 
 //add space
-
+//
                         try {
                             //Расстановка пробелов
                             float F = ListWidth.get(listWidthCount) + Fspace;
@@ -371,10 +397,10 @@ public class MainPdf {
 
                         StringRes = hyphenator.widtString(result, maxSize, font, Alist.get(i + 1));
                         float letter_after_hyph = hyphenator.minusResult;
-                        result = 0 + letter_after_hyph;
                         //Из Hyphenotor часть слова после дифиса
-                        t2 = new Text(StringRes.get(1));
+                      // t2 = new Text(StringRes.get(1));
                         Fspace = font.getWidth(" ", sizefont);
+                     //  result= 0+letter_after_hyph;
                         //
                         listWidthCount++;
 
@@ -394,8 +420,8 @@ public class MainPdf {
                 if (!parag || !paragCount) {
                     for (int j = 0; j < StringRes.get(0).length(); j++) {
                         t = new Text(String.valueOf(StringRes.get(0).charAt(j)));
-                        if (StringRes.get(0).charAt(j) == StringRes.get(0).charAt(StringRes.get(0).length() - 2)
-                                && words.isSpecifiedLetterLowerLast(StringRes.get(0).charAt(j))) {
+                        if (StringRes.get(0).charAt(j) == StringRes.get(0).charAt(StringRes.get(0).length() - 2 )
+                                && words.isSpecifiedLetterLowerLast(StringRes.get(0).charAt(j)) && j ==StringRes.get(0).length() - 2) {
                             t.setFont(fontSpecEndLetter);
                         } else
                             t.setFont(font);
@@ -427,13 +453,17 @@ public class MainPdf {
    //Метож нжен для добавления прробелов
     public static void WidthStroke(ArrayList<String> Alist,float result) {
         Boolean parag = true;
-         int count = 0;
+        ArrayList <String> StringRes = new ArrayList<>();
+        StringRes.add("");
+        StringRes.add("");
+        int count = 0;
         Hyphenator hyphenator = new Hyphenator();
         Words words = new Words();
         for (int i = 0; i < Alist.size(); i++) {
 
                         if(!parag){
-
+                            //result = 0;
+                          result =0;
                    count++;
                    //Нужен для маржинслева
                  if (count % 2 == 0) {
@@ -443,6 +473,26 @@ public class MainPdf {
 
                     result += 5;
                 }
+                            for (int j = 0; j < StringRes.get(1).length(); j++) {
+                                if (j ==StringRes.get(1).length() - 2&&StringRes.get(1).length()>3&&StringRes.get(1).charAt(j) == StringRes.get(1).charAt(StringRes.get(1).length() - 3 ) && words.isSimbolForSpec(StringRes.get(1),StringRes.get(1).length()-2) && words.isSpecifiedLetterLowerLast(StringRes.get(1).charAt(j))&& StringRes.get(1).charAt(StringRes.get(1).length() - 1) == ' ') {
+                                    result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
+
+                                }
+//                        //Порсле пробела если буква о в б и тд. то доп шрифт
+////Если вначале есть буква г з и тд то новый шрифт
+                                else if (j == 0 && words.isSpecifiedLetterLowerfirst(StringRes.get(1).charAt(j))) {
+                                    result += fontSpec.getWidth(Alist.get(i).charAt(j), sizefont);
+
+                                }
+                                else if (j ==StringRes.get(1).length() - 2 &&StringRes.get(1).length()>1&&StringRes.get(1).charAt(j) == StringRes.get(1).charAt(StringRes.get(1).length() - 2 ) && StringRes.get(1).charAt(StringRes.get(1).length() - 1) == ' ' && words.isSpecifiedLetterLowerLast(StringRes.get(1).charAt(j))) {
+                                    result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
+                                } else {
+                                    result += font.getWidth(StringRes.get(1).charAt(j), sizefont);
+
+                                }
+                                ;
+                                //StringRes.get(1);
+                            }
  }
 
             if (parag) {
@@ -450,22 +500,22 @@ public class MainPdf {
                 for (int j = 0; j < Alist.get(i).length(); j++) {
                     int rand = 1 + (int) (Math.random() *4);
                     //Если слово больше 3(нужено чтобы не было ошибки IndexOutOfBoundsException)И если слово с конца(+пробел) содержит -,.! и тд, то применяется специльный шрифт
-                        if ( Alist.get(i).length() > 3 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 3) && words.isSimbolForSpec(Alist.get(i),Alist.get(i).length() - 2) && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
+                    if (j ==Alist.get(i).length() - 2&& Alist.get(i).length() > 3 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 3) && words.isSimbolForSpec(Alist.get(i),Alist.get(i).length() - 2) && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
+
                         result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
 
 
                     }
                     //Порсле пробела если буква о в б и тд. то доп шрифт
-                           else  if ( Alist.get(i).length() > 1 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 2) &&  Alist.get(i).charAt(Alist.get(i).length() - 1) == ' ' && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
-                    result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
-                }
 
+                    else  if (j ==Alist.get(i).length() - 2&& Alist.get(i).length() > 1 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 2) &&  Alist.get(i).charAt(Alist.get(i).length() - 1) == ' ' && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
+                        result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
+                    }
 //Если вначале есть буква г з и тд то новый шрифт
-                      else if (j == 0 && words.isSpecifiedLetterLowerfirst(Alist.get(i).charAt(j))) {
+                    else if (j == 0 && words.isSpecifiedLetterLowerfirst(Alist.get(i).charAt(j))) {
                         result += fontSpec.getWidth(Alist.get(i).charAt(j), sizefont);
 
                     }
-
                     else {
                         if (rand == 1) {
 
@@ -501,10 +551,11 @@ public class MainPdf {
                 if (result + font.getWidth(Alist.get(i + 1), sizefont) > maxSize) {
                     float f= hyphenator.widtCount(result, maxSize, font, Alist.get(i + 1));
                     float letter_after_hyph = hyphenator.minusResult;
-                    result = 0 + letter_after_hyph;
+                  // result = 0 + letter_after_hyph;
                     ListWidth.add(f);
                     parag = false;
-
+                    StringRes = hyphenator.StringRes2;
+                   // System.out.println(hyphenator.StringRes2);
 
                 }
 
