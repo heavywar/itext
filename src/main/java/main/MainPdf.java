@@ -16,10 +16,8 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.property.Leading;
 import com.itextpdf.layout.property.Property;
-import com.itextpdf.licensekey.LicenseKey;
 
 
-import javax.xml.bind.SchemaOutputResolver;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -50,6 +48,7 @@ public class MainPdf {
     private static PdfFont fontSpec;
     private  static PdfFont fontSpecEndLetter;
     public static  final int sizefont = 16;
+    public static  boolean grid =false;
     //Добавлеине в лист width параграфов
    static  ArrayList<Float> ListWidth = new ArrayList<>();
    //Добавление рандома
@@ -58,8 +57,8 @@ public class MainPdf {
 
 
 
+
     public static void main(String[] args) throws Exception {
-        LicenseKey.loadLicenseFile("./fonts/tutorial/itextkey1538302072407_0.xml");
         File file = new File(DEST);
         file.getParentFile().mkdirs();
         new MainPdf().manipulatePdf(DEST);
@@ -121,24 +120,24 @@ public class MainPdf {
 //String line = "Midnight Club II (с англ.-  «Полночный клуб 2») — видеоигра в жанре аркадных авто и мотогонок, разработанная студией Rockstar San Diego и изданная компанией Rockstar Games";
 //  p.add(line);
 //        p.add("\n");
-       PdfCanvas canvas = new PdfCanvas(pdfDoc.addNewPage());
+        if(grid) {
+            PdfCanvas canvas = new PdfCanvas(pdfDoc.addNewPage());
 
-        Color magentaColor = new DeviceCmyk(0.f, 0.f, 0.f, 100.f);
-        //canvas.setStrokeColor(magentaColor);
+            Color magentaColor = new DeviceCmyk(0.f, 0.f, 0.f, 100.f);
+            canvas.setStrokeColor(magentaColor);
 
 
+            for (double y = 4.251969f; y <= 595; y += 14.1732) {
+                canvas.moveTo(0, y);
+                canvas.lineTo(420, y);
+            }
+            for (double x = 0; x <= 420; x += 14.1732) {
+                canvas.moveTo(x, 0);
+                canvas.lineTo(x, 595);
+            }
+            canvas.closePathStroke();
 
-
-        for (double y = 5.66929f; y <= 595; y += 14.1732) {
-            canvas.moveTo(0, y);
-            canvas.lineTo(420, y);
         }
-        for (double x = 0; x <= 420; x += 14.1732) {
-            canvas.moveTo(x, 0);
-            canvas.lineTo(x, 595);
-        }
-
-
         Words words = new Words();
         Hyphenator hyphenator = new Hyphenator();
         Words words1 = new Words();
@@ -201,9 +200,10 @@ public class MainPdf {
 
                     for (int j = 0; j < StringRes.get(1).length(); j++) {
                       t2 = new Text(String.valueOf(StringRes.get(1).charAt(j)));
-                        if (j ==StringRes.get(1).length() - 2&&StringRes.get(1).length()>3&&StringRes.get(1).charAt(j) == StringRes.get(1).charAt(StringRes.get(1).length() - 3 ) && words.isSimbolForSpec(StringRes.get(1),StringRes.get(1).length()-2) && words.isSpecifiedLetterLowerLast(StringRes.get(1).charAt(j))&& StringRes.get(1).charAt(StringRes.get(1).length() - 1) == ' ') {
+                            if (j ==StringRes.get(1).length() - 3&&StringRes.get(1).length()>3&&StringRes.get(1).charAt(j) == StringRes.get(1).charAt(StringRes.get(1).length() - 3) && words.isSimbolForSpec(StringRes.get(1),StringRes.get(1).length()-2) && words.isSpecifiedLetterLowerLast(StringRes.get(1).charAt(j))) {
                             t2.setFont(fontSpecEndLetter);
                             result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
+
 
                         }
 //                        //Порсле пробела если буква о в б и тд. то доп шрифт
@@ -236,13 +236,12 @@ public class MainPdf {
                     float nplus = 0f;
                     float nminus = 0;
                     for (int j = 0; j < Alist.get(i).length(); j++) {
-//                        if(Alist.get(i).length()<3)
-//                          continue;
+
                         t = new Text(String.valueOf(Alist.get(i).charAt(j)));
                         //Буквы вверх
                         if (i % 5 == 0 && count!=0 && !words1.isNumber((Alist.get(i))) && Alist.get(i).length() > 5 && Alist.get(i).length() < 11 ) {
                             countChange++;
-                            t.setTextRise(textRise);
+
                             //Первая половина букв вверпх
                             if (i % 2 == 0 && words.isLeterSpec_Half(Alist.get(i))) {
                                 if (countChange < Alist.get(i).length() / 2)
@@ -253,10 +252,11 @@ public class MainPdf {
                             else if(i%2 != 0){
                                 if (countChange >= Alist.get(i).length() / 2)
                                     textRise += 0.85;
+                              //  t.setTextRise(textRise);
 
                             }
 
-
+//t.setBackgroundColor(greenColor);
                         }
 
 
@@ -327,8 +327,7 @@ public class MainPdf {
 
 
                         //Если слово больше 3(нужено чтобы не было ошибки IndexOutOfBoundsException)И если слово с конца(+пробел) содержит -,.! и тд, то применяется специльный шрифт
-                        if (j ==Alist.get(i).length() - 2&& Alist.get(i).length() > 3 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 3) && words.isSimbolForSpec(Alist.get(i),Alist.get(i).length() - 2) && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
-
+                        if (j ==Alist.get(i).length() - 3&& Alist.get(i).length() > 3 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 3) && words.isSimbolForSpec(Alist.get(i),Alist.get(i).length() - 2) && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
                             t.setFont(fontSpecEndLetter);
                             result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
 
@@ -474,9 +473,8 @@ public class MainPdf {
                     result += 5;
                 }
                             for (int j = 0; j < StringRes.get(1).length(); j++) {
-                                if (j ==StringRes.get(1).length() - 2&&StringRes.get(1).length()>3&&StringRes.get(1).charAt(j) == StringRes.get(1).charAt(StringRes.get(1).length() - 3 ) && words.isSimbolForSpec(StringRes.get(1),StringRes.get(1).length()-2) && words.isSpecifiedLetterLowerLast(StringRes.get(1).charAt(j))&& StringRes.get(1).charAt(StringRes.get(1).length() - 1) == ' ') {
+                                if (j ==StringRes.get(1).length() - 3&&StringRes.get(1).length()>3&&StringRes.get(1).charAt(j) == StringRes.get(1).charAt(StringRes.get(1).length() - 3) && words.isSimbolForSpec(StringRes.get(1),StringRes.get(1).length()-2) && words.isSpecifiedLetterLowerLast(StringRes.get(1).charAt(j))) {
                                     result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
-
                                 }
 //                        //Порсле пробела если буква о в б и тд. то доп шрифт
 ////Если вначале есть буква г з и тд то новый шрифт
@@ -500,7 +498,7 @@ public class MainPdf {
                 for (int j = 0; j < Alist.get(i).length(); j++) {
                     int rand = 1 + (int) (Math.random() *4);
                     //Если слово больше 3(нужено чтобы не было ошибки IndexOutOfBoundsException)И если слово с конца(+пробел) содержит -,.! и тд, то применяется специльный шрифт
-                    if (j ==Alist.get(i).length() - 2&& Alist.get(i).length() > 3 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 3) && words.isSimbolForSpec(Alist.get(i),Alist.get(i).length() - 2) && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
+                    if (j ==Alist.get(i).length() - 3&& Alist.get(i).length() > 3 && Alist.get(i).charAt(j) == Alist.get(i).charAt(Alist.get(i).length() - 3) && words.isSimbolForSpec(Alist.get(i),Alist.get(i).length() - 2) && words.isSpecifiedLetterLowerLast(Alist.get(i).charAt(j))) {
 
                         result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
 

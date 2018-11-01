@@ -1,5 +1,7 @@
 package main;
 //1)Печать четныый(дырки<-) 2)печать четных
+import com.itextpdf.kernel.colors.Color;
+import com.itextpdf.kernel.colors.DeviceCmyk;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.geom.Rectangle;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -40,6 +42,7 @@ public class mirrorMargin {
         // adding the same page 16 times with a different offset
 int n = 0;
         for (int i =1 ; i <= srcDoc.getNumberOfPages(); i++) {
+
             PdfFormXObject page = srcDoc.getPage(i).copyAsFormXObject(pdfDoc);
             content.clip();
             content.newPath();
@@ -50,6 +53,19 @@ int n = 0;
             content.addXObject(page,-36.6929f,0);
                 content = new PdfCanvas(pdfDoc.addNewPage());
                 n++;
+            Color magentaColor = new DeviceCmyk(0.f, 0.f, 0.f, 100.f);
+            content.setStrokeColor(magentaColor);
+            if(MainPdf.grid) {
+                for (double y = 4.251969f; y <= 595; y += 14.1732) {
+                    content.moveTo(0, y);
+                    content.lineTo(420, y);
+                }
+                for (double x = 0; x <= 420; x += 14.1732) {
+                    content.moveTo(x, 0);
+                    content.lineTo(x, 595);
+                }
+                content.closePathStroke();
+            }
 
         }
         srcDoc.close();

@@ -11,9 +11,7 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.property.Leading;
 import com.itextpdf.layout.property.Property;
-import com.itextpdf.licensekey.LicenseKey;
-import com.itextpdf.typography.config.StandardScriptConfig;
-import com.itextpdf.typography.config.TypographyConfigurator;
+
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,7 +22,7 @@ public class testHyph {
     public static final String DEST = "./fonts/tutorial/TXTtest122.pdf";
     public static final String DEST1 = "./fonts/tutorial/TXTtest22.pdf";
     public static final String DEST2 = "D:\\1.txt";
-    public static final String FONT = "D:\\V7СоединенияПолный шрифтТЕст.ttf";
+    public static final String FONT = "D:\\allFonts\\1\\dirtfont.ttf";
 
     // public static final String FONT1 = "D:\\fontGZ....ttf";
     // public static final String FONT3 = "D:\\newFont2т.ttf";
@@ -35,7 +33,6 @@ public class testHyph {
     int sizefont =16;
 
     public static void main(String[] args) throws Exception {
-        LicenseKey.loadLicenseFile("./fonts/tutorial/itextkey1538302072407_0.xml");
         File file = new File(DEST);
         file.getParentFile().mkdirs();
         new testHyph ().manipulatePdf(DEST);
@@ -59,28 +56,31 @@ public class testHyph {
         Document doc = new Document(pdfDoc, ps);
         doc.setProperty(Property.LEADING, new Leading(Leading.FIXED, 28.4965f));
 
-        doc
-                .setFontSize(sizefont)
-                //  .setTextAlignment(TextAlignment.JUSTIFIED)
-                .setProperty(Property.FONT, font);
 
 
-
-
-
-        doc.setProperty(Property.TYPOGRAPHY_CONFIG, new TypographyConfigurator()
-                .addFeatureConfig(
-                        new StandardScriptConfig(new HashSet<Character.UnicodeScript>(Arrays.asList(Character.UnicodeScript.LATIN, Character.UnicodeScript.CYRILLIC)))
-                                .setLigaturesApplying(true)
-                        // .setKerningFeature(true)
-
-                ));
-        Paragraph p = new Paragraph();
+//
+        Paragraph p = new Paragraph("fdfdf");
+        p.setFont(font);
 
 
 
         p.setMarginTop(230);
-        p.add("xxxx");
+//        String s = " Схема генетического кода\n" +
+//                "Генети́ческий код (англ. Genetic code) — совокупность правил, согласно которым в живых клетках информация переводится с языка нуклеотидов (ген и мРНК) в язык аминокислот (белок). Собственно перевод (трансляцию) осуществляет рибосома, которая соединяет аминокислоты в цепочку согласно инструкции, записанной в кодонах мРНК. Соответствующие аминокислоты доставляются в рибосому молекулами тРНК. У всех живых организмов генетический код имеет только незначительные различия, что свидетельствует о наличии общего предка.";
+//       for(int i = 0; i<s.length();i++)
+//       {
+//           Text text = new Text(String.valueOf(s.charAt(i)));
+//           Text text2 = new Text("");
+//           p.add(text);
+//           p.add(text2);
+//       }
+        char[] c ;
+        for(int i = 0; i<10000; i++) {
+            c = font.getGlyph(i).getChars();
+            System.out.print(c);
+        }
+
+
 
          doc.add(p);
          doc.close();
@@ -88,11 +88,5 @@ public class testHyph {
 
     }
 
-    public  static Paragraph p (String a)
-    {
-        Paragraph p = new Paragraph(a);
-        p.setBold();
-        return p;
-    }
   }
 
