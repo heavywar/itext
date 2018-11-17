@@ -1,4 +1,4 @@
-package main;
+package itext_up.main;
 
 import com.itextpdf.io.font.PdfEncodings;
 import com.itextpdf.kernel.font.PdfFont;
@@ -11,17 +11,20 @@ import java.util.Vector;
 
 public class Hyphenator {
     public static final String FONTSpecEnd= "D:\\allFonts\\fontSpecEndLetter.ttf";
+    public static final String fontSpecFirst= "D:\\allFonts\\fontSpecificLetter.ttf";
+
 
 
 
     private Vector rules = new Vector();
     public float minusResult;
-    private   PdfFont  fontSpecEndLetter;
+    private   PdfFont  fontSpecEndLetter =  PdfFontFactory.createFont(FONTSpecEnd, PdfEncodings.IDENTITY_H, true);
+    private   PdfFont   fontSpecFirstLetter =   PdfFontFactory.createFont(fontSpecFirst, PdfEncodings.IDENTITY_H, true);
     private float resultMargin;
     public   ArrayList <String> StringRes2 = new ArrayList<>();
 
 
-    public Hyphenator() {
+    public Hyphenator() throws IOException {
         rules.addElement(new HyphenPair("xgg", 1));
         rules.addElement(new HyphenPair("xgs", 1));
         rules.addElement(new HyphenPair("xsg", 1));
@@ -79,116 +82,89 @@ public class Hyphenator {
 //    }
 
     public ArrayList <String> widtString(float result,float maxSize,PdfFont font,String str) throws IOException {
-          fontSpecEndLetter =  PdfFontFactory.createFont(FONTSpecEnd, PdfEncodings.IDENTITY_H, true);
+
         resultMargin = 0;
         minusResult = 0;
-        ArrayList <String> StringRes = new ArrayList<>();
-        float space = font.getWidth(" ", MainPdf.sizefont);
-        float hyphen =  font.getWidth("-", MainPdf.sizefont);
-        String s = hyphenateWord(str);
-       ArrayList<String> ar = ArrayList(s);
+        ArrayList <String> getResultString = new ArrayList<>();
+        float getwidthSpace = font.getWidth(" ", MainPdf.sizefont);
+        float getwidthHyphen =  font.getWidth("-", MainPdf.sizefont);
+        float widthFirstLetterEdit = 0;
+        float widthFirstLetter = 0;
+        float widthresultFirstLetter = 0;
+        String lastWord = hyphenateWord(str);
+        //System.out.println(str);
+       ArrayList<String> syllables = Parts_by_syllables(lastWord);
          int n = 0;
         int n1 = 0;
 
 // Если слово влизает и не нуден дифис то остается всё как етсь
-        if(result +font.getWidth(str, MainPdf.sizefont)-space<maxSize )
+        if(result +font.getWidth(str, MainPdf.sizefont)-getwidthSpace<maxSize )
         {
             minusResult = 0;
-            resultMargin = result+font.getWidth(str, MainPdf.sizefont)-space;
-            StringRes.add(str);
-            StringRes.add("");
-            return StringRes;
+            resultMargin = result+font.getWidth(str, MainPdf.sizefont)-getwidthSpace;
+            getResultString.add(str);
+            getResultString.add("");
+
+            return getResultString;
+
 
            // return StringRes.add(str);
         }
 
-        result+=hyphen;
+        result+=getwidthHyphen;
         //Если слово сразу перебрасывается на новую строку
-        if(result + font.getWidth(ar.get(0), MainPdf.sizefont)>maxSize)
+        if(result + font.getWidth(syllables.get(0), MainPdf.sizefont)>maxSize)
         {
             minusResult = font.getWidth(str, MainPdf.sizefont);
-            resultMargin = result-hyphen-space;
-            StringRes.add("");
-            StringRes.add(str);
-            return StringRes;
+            resultMargin = result-getwidthHyphen-getwidthSpace;
+            getResultString.add("");
+            getResultString.add(str);
+            return getResultString;
         }
-String lastSlog ="";
-float resTest = result;
-//Нужен чтобы узнать последние буквы перед дифисом
-        for(int i = 0; i<ar.size();i++) {
-            float res = font.getWidth(ar.get(i), MainPdf.sizefont);
-            resTest += res;
-            if (resTest < maxSize ) {
-                lastSlog = ar.get(i);
-            }
-        }
-       for(int i = 0; i<ar.size();i++)
+
+        Words words =new Words();
+
+//Подсчет первой буквы если г. х и тд
+        result = getResult(result, font, str, words);
+        //Подсчет последней буквы
+        result = getResult(result, maxSize, font, str, syllables, words);
+
+        for(int i = 0; i<syllables.size();i++)
        {
-           float res = font.getWidth(ar.get(i), MainPdf.sizefont);
-          // float res12 = font.getWidth(ar.get(i+1),test.sizefont);
-           Words words =new Words();
-           float res1 , res2, res3, res4;
-           result+=res;
-           //Нужен чтобы узнать посл буквы перед дифисом
-           if(result<=maxSize) {
-               resultMargin = result;
-               n1 += ar.get(i).length();
+          float res = font.getWidth(syllables.get(i), MainPdf.sizefont);
 
-           }
-           //Добавлеие специльно символа перед дифисом. Считаю разницу между буквами Например П+О-П+О(спец О)
-            if (result<maxSize &&ar.get(i).equals(lastSlog)) {
-
-               res1 = fontSpecEndLetter.getWidth(str.substring(n1 - 1, n1), MainPdf.sizefont);
-               res2 = font.getWidth(str.substring(n1 - 2, n1-1), MainPdf.sizefont);
-                res3 = font.getWidth(str.substring(n1 - 1, n1), MainPdf.sizefont);
-                res4 =font.getWidth(str.substring(n1 - 2, n1-1), MainPdf.sizefont);
-
-               if(words.isSpecifiedLetterLowerLast(str.substring(n1 - 1, n1).charAt(0))){
-
-                   result -=((res3+res4)-(res1+res2));
-
-
-               }
-
-               //Break = false;
-
-           }
+          result+=res;
+//           //Нужен чтобы узнать посл буквы перед дифисом
 
 
            if(result<=maxSize) {
                resultMargin = result;
-               n += ar.get(i).length();
+               n += syllables.get(i).length();
            }
-
-
-
-
-
 
 
        }
         String hyphennext ;
             hyphennext =   str.substring(n);
-            StringRes.add(str.substring(0, n) + "-");
-            StringRes.add(str.substring(n));
+            getResultString.add(str.substring(0, n) + "-");
+            getResultString.add(str.substring(n));
             //minusResult нужен чтобы от result отнять перенесенные символы которые на новой строке
         minusResult = font.getWidth(hyphennext, MainPdf.sizefont);
-        return StringRes;
+        return getResultString;
     }
-//Дубликат нужен чтобы добавить пробелы
+
+
+
+    //Дубликат нужен чтобы добавить пробелы
     public float widtCount(float result,float maxSize,PdfFont font,String str) throws IOException {
         StringRes2 = new ArrayList<>();
-
-        fontSpecEndLetter =  PdfFontFactory.createFont(FONTSpecEnd, PdfEncodings.IDENTITY_H, true);
         resultMargin = 0;
         minusResult = 0;
         float space = font.getWidth(" ", MainPdf.sizefont);
         float hyphen =  font.getWidth("-", MainPdf.sizefont);
         String s = hyphenateWord(str);
-        ArrayList<String> ar = ArrayList(s);
+        ArrayList<String> syllables = Parts_by_syllables(s);
         int n = 0;
-        int n1 = 0;
-        boolean Break = true;
         if(result +font.getWidth(str, MainPdf.sizefont)-space<maxSize )
         {
             minusResult = 0;
@@ -200,9 +176,8 @@ float resTest = result;
             // return StringRes.add(str);
         }
 
-
         result+=hyphen;
-        if(result + font.getWidth(ar.get(0), MainPdf.sizefont)>maxSize)
+        if(result + font.getWidth(syllables.get(0), MainPdf.sizefont)>maxSize)
         {
             minusResult = font.getWidth(str, MainPdf.sizefont);
             resultMargin = result-hyphen-space;
@@ -211,67 +186,37 @@ float resTest = result;
             StringRes2.add(str);
             return resultMargin;
         }
+        Words words =new Words();
+       //Подсчет первой буквы если г. х и тд
+        result = getResult(result, font, str, words);
+        //Подсчет последней буквы
+        result = getResult(result, maxSize, font, str, syllables, words);
 
-        String lastSlog ="";
-        float resTest = result;
-        for(int i = 0; i<ar.size();i++) {
-            float res = font.getWidth(ar.get(i), MainPdf.sizefont);
-            resTest += res;
-            if (resTest < maxSize ) {
-                lastSlog = ar.get(i);
-
-            }
-        }
-        for(int i = 0; i<ar.size();i++)
+        for(int i = 0; i<syllables.size();i++)
         {
-            float res = font.getWidth(ar.get(i), MainPdf.sizefont);
-            Words words =new Words();
-            float res1 , res2, res3, res4;
-            result+=res;
+            float res = font.getWidth(syllables.get(i), MainPdf.sizefont);
+//
+
+           result+=res;
+
             if(result<=maxSize) {
                 resultMargin = result;
-                n1 += ar.get(i).length();
-
+                n += syllables.get(i).length();
             }
-            if (result<maxSize &&ar.get(i).equals(lastSlog)) {
-
-                res1 = fontSpecEndLetter.getWidth(str.substring(n1 - 1, n1), MainPdf.sizefont);
-                res2 = font.getWidth(str.substring(n1 - 2, n1-1), MainPdf.sizefont);
-                res3 = font.getWidth(str.substring(n1 - 1, n1), MainPdf.sizefont);
-                res4 =font.getWidth(str.substring(n1 - 2, n1-1), MainPdf.sizefont);
-
-                if(words.isSpecifiedLetterLowerLast(str.substring(n1 - 1, n1).charAt(0))){
-                   result -=((res3+res4)-(res1+res2));
-
-                }
-
-            }
-            if(result<=maxSize) {
-                resultMargin = result;
-                n += ar.get(i).length();
-            }
-
-
-
-
-
-
 
         }
         String hyphennext = "";
-
-
             hyphennext =   str.substring(n);
             StringRes2.add(str.substring(0, n) + "-");
             StringRes2.add(str.substring(n));
             //resultAp = str.substring(0, n) + "-" + str.substring(n);
-
-
         minusResult = font.getWidth(hyphennext, MainPdf.sizefont);
 
         return resultMargin;
 
     }
+
+
 
     class HyphenPair {
         private String pattern;
@@ -285,7 +230,7 @@ float resTest = result;
     }
 
 
-    public static ArrayList<String> ArrayList(String string){
+    public static ArrayList<String> Parts_by_syllables(String string){
         //Разделаяю %-% Чтобы не было ошибок в словах типо: Что-нибудь и тд
         ArrayList<String> arrayList = new ArrayList<>();
         for (String retval : string.split("%-%", 0)) {
@@ -297,5 +242,41 @@ float resTest = result;
         }
         return arrayList;
 }
+    private float getResult(float result, float maxSize, PdfFont font, String str, ArrayList<String> syllables, Words words) {
+        float widthFirstLetterEdit;
+        float widthFirstLetter;
+        float widthresultFirstLetter;
+        float resTest = result;
+
+//        }
+        int countlast = 0;
+        for(int i = 0; i<syllables.size();i++) {
+            float res = font.getWidth(syllables.get(i), MainPdf.sizefont);
+            resTest += res;
+            if(resTest<=maxSize) {
+                countlast += syllables.get(i).length();
+            }
+        }
+        char lastSym = str.substring(0, countlast).charAt(countlast-1);
+        if(words.isSpecifiedLetterLowerLast(lastSym)) {
+            widthFirstLetterEdit = fontSpecFirstLetter.getWidth(lastSym, MainPdf.sizefont);
+            widthFirstLetter = font.getWidth(lastSym, MainPdf.sizefont);
+            widthresultFirstLetter = widthFirstLetter - widthFirstLetterEdit;
+            result -= widthresultFirstLetter;
+        }
+        return result;
+    }
+    private float getResult(float result, PdfFont font, String str, Words words) {
+        float widthFirstLetterEdit;
+        float widthFirstLetter;
+        float widthresultFirstLetter;
+        if(words.isSpecifiedLetterLowerfirst(str.charAt(0))) {
+            widthFirstLetterEdit = fontSpecFirstLetter.getWidth(str.charAt(0), MainPdf.sizefont);
+            widthFirstLetter = font.getWidth(str.charAt(0), MainPdf.sizefont);
+            widthresultFirstLetter = widthFirstLetter - widthFirstLetterEdit;
+            result -= widthresultFirstLetter;
+        }
+        return result;
+    }
     }
 

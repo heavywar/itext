@@ -1,4 +1,4 @@
-package main;//1)Печать четныый(дырки<-) 2)печать четных
+package itext_up.main;//1)Печать четныый(дырки<-) 2)печать четных
 //Если листов не четное количетсво то последний , для нечетных пустой,самый первый для печати(например листов 91)
 
 
@@ -158,7 +158,6 @@ public class MainPdf {
 
             int n = 0;
             float result =0;
-
             float firstLine = 0;
             if(line.length()>70 || title ) {
                 result = 28.3465f;
@@ -173,12 +172,8 @@ public class MainPdf {
             }
             Text t2 = new Text("");
 
-
-
             Paragraph p = new Paragraph();
             p.setFirstLineIndent(firstLine);
-
-
             List<String> Alist = words.Word_WithoutSpaceforMainPdf(line);
 
             WidthStroke((ArrayList<String>) Alist,result);
@@ -203,7 +198,6 @@ public class MainPdf {
                             if (j ==StringRes.get(1).length() - 3&&StringRes.get(1).length()>3&&StringRes.get(1).charAt(j) == StringRes.get(1).charAt(StringRes.get(1).length() - 3) && words.isSimbolForSpec(StringRes.get(1),StringRes.get(1).length()-2) && words.isSpecifiedLetterLowerLast(StringRes.get(1).charAt(j))) {
                             t2.setFont(fontSpecEndLetter);
                             result += fontSpecEndLetter.getWidth(Alist.get(i).charAt(j), sizefont);
-
 
                         }
 //                        //Порсле пробела если буква о в б и тд. то доп шрифт
@@ -417,12 +411,18 @@ public class MainPdf {
                 }
 
                 if (!parag || !paragCount) {
+
                     for (int j = 0; j < StringRes.get(0).length(); j++) {
                         t = new Text(String.valueOf(StringRes.get(0).charAt(j)));
-                        if (StringRes.get(0).charAt(j) == StringRes.get(0).charAt(StringRes.get(0).length() - 2 )
+                        if (StringRes.get(0).length()>1 && StringRes.get(0).charAt(j) == StringRes.get(0).charAt(StringRes.get(0).length() - 2 )
                                 && words.isSpecifiedLetterLowerLast(StringRes.get(0).charAt(j)) && j ==StringRes.get(0).length() - 2) {
                             t.setFont(fontSpecEndLetter);
-                        } else
+                        }else if (j == 0 && words.isSpecifiedLetterLowerfirst(StringRes.get(0).charAt(j))) {
+                                t.setFont(fontSpec);
+
+                            }
+
+                         else
                             t.setFont(font);
 
 
@@ -450,7 +450,7 @@ public class MainPdf {
 
     }
    //Метож нжен для добавления прробелов
-    public static void WidthStroke(ArrayList<String> Alist,float result) {
+    public static void WidthStroke(ArrayList<String> Alist,float result) throws IOException {
         Boolean parag = true;
         ArrayList <String> StringRes = new ArrayList<>();
         StringRes.add("");
@@ -544,7 +544,6 @@ public class MainPdf {
             }
             parag = true;
             try {
-
 
                 if (result + font.getWidth(Alist.get(i + 1), sizefont) > maxSize) {
                     float f= hyphenator.widtCount(result, maxSize, font, Alist.get(i + 1));

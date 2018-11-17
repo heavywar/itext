@@ -1,4 +1,4 @@
-package main;
+package itext_up.main;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package main;
+package itext_up.main;
 //1)Печать четныый(дырки<-) 2)печать четных
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.DeviceCmyk;
