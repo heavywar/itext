@@ -88,9 +88,6 @@ public class Hyphenator {
         ArrayList <String> getResultString = new ArrayList<>();
         float getwidthSpace = font.getWidth(" ", MainPdf.sizefont);
         float getwidthHyphen =  font.getWidth("-", MainPdf.sizefont);
-        float widthFirstLetterEdit = 0;
-        float widthFirstLetter = 0;
-        float widthresultFirstLetter = 0;
         String lastWord = hyphenateWord(str);
         //System.out.println(str);
        ArrayList<String> syllables = Parts_by_syllables(lastWord);
@@ -125,9 +122,9 @@ public class Hyphenator {
         Words words =new Words();
 
 //Подсчет первой буквы если г. х и тд
-        result = getResult(result, font, str, words);
+        result = getResultFirsLetter(result, font, str, words);
         //Подсчет последней буквы
-        result = getResult(result, maxSize, font, str, syllables, words);
+        result = getResultEndLetter(result, maxSize, font, str, syllables, words);
 
         for(int i = 0; i<syllables.size();i++)
        {
@@ -188,22 +185,18 @@ public class Hyphenator {
         }
         Words words =new Words();
        //Подсчет первой буквы если г. х и тд
-        result = getResult(result, font, str, words);
+        result = getResultFirsLetter(result, font, str, words);
         //Подсчет последней буквы
-        result = getResult(result, maxSize, font, str, syllables, words);
-
+        result = getResultEndLetter(result, maxSize, font, str, syllables, words);
         for(int i = 0; i<syllables.size();i++)
         {
             float res = font.getWidth(syllables.get(i), MainPdf.sizefont);
 //
-
-           result+=res;
-
+            result+=res;
             if(result<=maxSize) {
                 resultMargin = result;
                 n += syllables.get(i).length();
             }
-
         }
         String hyphennext = "";
             hyphennext =   str.substring(n);
@@ -242,7 +235,7 @@ public class Hyphenator {
         }
         return arrayList;
 }
-    private float getResult(float result, float maxSize, PdfFont font, String str, ArrayList<String> syllables, Words words) {
+    private float getResultEndLetter(float result, float maxSize, PdfFont font, String str, ArrayList<String> syllables, Words words) {
         float widthFirstLetterEdit;
         float widthFirstLetter;
         float widthresultFirstLetter;
@@ -259,14 +252,14 @@ public class Hyphenator {
         }
         char lastSym = str.substring(0, countlast).charAt(countlast-1);
         if(words.isSpecifiedLetterLowerLast(lastSym)) {
-            widthFirstLetterEdit = fontSpecFirstLetter.getWidth(lastSym, MainPdf.sizefont);
+            widthFirstLetterEdit = fontSpecEndLetter.getWidth(lastSym, MainPdf.sizefont);
             widthFirstLetter = font.getWidth(lastSym, MainPdf.sizefont);
             widthresultFirstLetter = widthFirstLetter - widthFirstLetterEdit;
             result -= widthresultFirstLetter;
         }
         return result;
     }
-    private float getResult(float result, PdfFont font, String str, Words words) {
+    private float getResultFirsLetter(float result, PdfFont font, String str, Words words) {
         float widthFirstLetterEdit;
         float widthFirstLetter;
         float widthresultFirstLetter;

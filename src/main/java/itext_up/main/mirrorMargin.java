@@ -14,9 +14,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class mirrorMargin {
-
-
-
     public static final String DEST1 = "./fonts/tutorial/TXTtest122.pdf";
 
     public static final String DEST = "results/chapter02/canvas_repeat.pdf";
@@ -40,7 +37,7 @@ public class mirrorMargin {
         PdfCanvas content = new PdfCanvas(pdfDoc.addNewPage());
 
         // adding the same page 16 times with a different offset
-int n = 0;
+        int n = 0;
         for (int i =1 ; i <= srcDoc.getNumberOfPages(); i++) {
 
             PdfFormXObject page = srcDoc.getPage(i).copyAsFormXObject(pdfDoc);
@@ -49,10 +46,10 @@ int n = 0;
             x++;
             if(n%2==0)
                 content.addXObject(page,0,0);
-                else if(!(n%2==0))
-            content.addXObject(page,-36.6929f,0);
-                content = new PdfCanvas(pdfDoc.addNewPage());
-                n++;
+            else if(!(n%2==0))
+                content.addXObject(page,-36.6929f,0);
+            content = new PdfCanvas(pdfDoc.addNewPage());
+            n++;
             Color magentaColor = new DeviceCmyk(0.f, 0.f, 0.f, 100.f);
             content.setStrokeColor(magentaColor);
             if(MainPdf.grid) {

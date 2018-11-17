@@ -26,6 +26,12 @@
         <itext.version>RELEASE</itext.version>
     </properties>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.12</version>
+        </dependency>
 
         <!-- add all iText 7 Community modules -->
         <dependency>
@@ -34,6 +40,24 @@
             <version>${itext.version}</version>
             <type>pom</type>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/com.levigo.jbig2/levigo-jbig2-imageio -->
+        <dependency>
+        <groupId>org.apache.pdfbox</groupId>
+        <artifactId>pdfbox</artifactId>
+        <version>2.0.8</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.pdfbox</groupId>
+        <artifactId>pdfbox-tools</artifactId>
+        <version>2.0.8</version>
+    </dependency>
+        <dependency>
+            <groupId>com.github.jai-imageio</groupId>
+            <artifactId>jai-imageio-core</artifactId>
+            <version>1.3.1</version>
+        </dependency>
     </dependencies>
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+
+
 </project>
